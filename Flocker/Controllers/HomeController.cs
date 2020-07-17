@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Flocker.Model;
+using Flocker.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Flocker.Controllers
@@ -10,12 +10,10 @@ namespace Flocker.Controllers
     public class HomeController : Controller
     {
 
-        IProductRepository _productRepository;
         ICategoryRepository _categoryRepository;
 
-        public HomeController(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        public HomeController(ICategoryRepository categoryRepository)
         {
-            _productRepository = productRepository;
             _categoryRepository = categoryRepository;
         }
 

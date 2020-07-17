@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Flocker.Model
+namespace Flocker.Models
 {
     public class MockCategoryRepository : ICategoryRepository
     {
@@ -11,21 +11,25 @@ namespace Flocker.Model
         {
             new Category{
                 CategoryId=0,
-                Name="Games"
+                Name="Games",
+                Image="~/Image/game-console.png"
             },
             new Category{
                 CategoryId=1,
-                Name="Electronic"
+                Name="Electronic",
+                Image="~/Image/electrician.png"
             },
             new Category{
                 CategoryId=2,
-                Name="Home Accessories"
+                Name="Accessories",
+                Image="~/Image/house.png"
             },
 
             
             new Category{
                 CategoryId=3,
-                Name="Phone"
+                Name="Phone",
+                Image="~/Image/phone.png"
             }
 
 

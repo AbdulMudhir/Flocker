@@ -5,6 +5,14 @@
 
     <head>
         <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no autoRotate:disabled">
+        <link rel="stylesheet" href="/content/font-awesome-4.7.0/css/font-awesome.css">
+        <script src="https://kit.fontawesome.com/3d37a0422a.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="~/content/reset.css" rel="stylesheet" />
+        <link href="~/content/homeStyleSheet.css" rel="stylesheet" />
+        <link href="~/content/StyleSheet.css" rel="stylesheet" />
         <link href="~/content/NavStyleSheet.css" rel="stylesheet" />
     </head>
 
@@ -18,19 +26,20 @@
 
             <div class="nav-container">
 
-                <h1>Flocker</h1>
+                <h1 class="logo">Flocker</h1>
 
-                <input type="text" id="searchBox"/>
+                <div class="searchbox-container">
+                    <i class="fa fa-search search-icon" aria-hidden="true"></i>
 
-                <h1>hello world</h1>
-
-                <div class="nav-buttons">
-
-                    <a>Login</a>
-                    <a>Register</a>
-
-
+                    <input type="text" id="searchBox" placeholder="What are you looking for..." />
                 </div>
+
+                <ul class="nav-buttons">
+
+                    <li><a>Login</a></li>
+                    <li><a>Register</a></li>
+
+                </ul>
 
 
 
@@ -45,6 +54,12 @@
         @RenderBody()
 
 
+
+
+        <footer>
+
+            <h1>DEMO WEBSITE CREATED BY Abdul Mudhir</h1>
+        </footer>
 
 
 

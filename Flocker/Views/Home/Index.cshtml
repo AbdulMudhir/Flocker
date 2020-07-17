@@ -1,7 +1,51 @@
-﻿
+﻿@model IEnumerable<Category>
+
 @{
-    ViewData["Title"] = "Index";
     Layout = "~/Views/_Layout.cshtml";
     ViewBag.Title = "Home";
 }
 
+
+<div class="categories-container">
+
+
+    <ul class="categories">
+
+
+
+        @foreach (var category in Model)
+        {
+
+            <li><img src="@Url.Content(@category.Image)"/><a asp-controller="Category" asp-action="Index" asp-route-id="@category.CategoryId">@category.Name</a></li>
+
+
+        }
+
+
+
+    </ul>
+
+
+</div>
+
+
+
+<div class="main-container">
+
+    <div class="container">
+        <div class="heading">
+            <h1>BUY & Sell Fast</h1>
+            <h4>Hvae too much stuff you no logner need? Then why not sell them now?</h4>
+            <a>Sell Now</a>
+
+        </div>
+
+        <img src="~/Image/CashBag@2x.png" />
+
+
+
+    </div>
+
+
+
+</div>

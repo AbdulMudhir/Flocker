@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Flocker.Model;
+using Flocker.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +20,7 @@ namespace Flocker
             services.AddScoped<IProductRepository, MockProductRepository>();
             services.AddScoped<ICategoryRepository, MockCategoryRepository>();
             services.AddScoped<IUserRepository, MockUserRepository>();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddControllersWithViews();
 
@@ -31,9 +32,12 @@ namespace Flocker
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             app.UseRouting();
 

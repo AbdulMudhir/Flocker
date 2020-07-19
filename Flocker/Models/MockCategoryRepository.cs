@@ -17,19 +17,19 @@ namespace Flocker.Models
             new Category{
                 CategoryId=1,
                 Name="Electronic",
-                Image="~/Image/electrician.png"
+                Image="~/Image/game-console.png"
             },
             new Category{
                 CategoryId=2,
                 Name="Accessories",
-                Image="~/Image/house.png"
+                Image="~/Image/game-console.png"
             },
 
             
             new Category{
                 CategoryId=3,
                 Name="Phone",
-                Image="~/Image/phone.png"
+                Image="~/Image/game-console.png"
             }
 
 

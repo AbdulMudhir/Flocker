@@ -413,3 +413,4 @@ C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Microsoft.Vi
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.csproj.CoreCompileInputs.cache
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Product\Detail.cshtml.g.cs

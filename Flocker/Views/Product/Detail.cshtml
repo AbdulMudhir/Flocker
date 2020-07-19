@@ -1,0 +1,54 @@
+﻿
+@model ProductViewModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+
+}
+
+
+
+<div class="categories-container">
+
+
+    <ul class="categories row justifiy-center align-center">
+
+
+
+        @foreach (var category in Model.Categories)
+        {
+
+            <li class="row justifiy-center align-center"><a asp-controller="Category" asp-action="Index" asp-route-id="@category.CategoryId"><img src="@Url.Content(@category.Image)" />@category.Name</a></li>
+
+
+        }
+
+
+
+    </ul>
+
+
+</div>
+
+
+<div class="container">
+
+    <ul class="breadcrumbs row">
+
+        <li><a asp-controller="Home" asp-action="index">Home</a></li>
+        <li><a asp-controller="Category" asp-action="category">@Model.Product.Category.Name</a></li>
+        <li>@Model.Product.Name</li>
+
+
+    </ul>
+
+
+</div>
+
+<section class="productInfo">
+    <div class="container">
+
+
+    </div>
+
+</section>

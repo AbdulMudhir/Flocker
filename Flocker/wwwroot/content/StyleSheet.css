@@ -1,4 +1,13 @@
 ﻿
+
+html{
+    font-size:16px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 footer {
     background-color: #1B4079;
     height:70px;
@@ -8,3 +17,111 @@ footer h1{
 
     color:white;
 }
+
+.col-1{
+    width:8.333%;
+}
+.col-2 {
+    width: 16.666%;
+}
+.col-3 {
+    width: 24.333%;
+}
+.col-4 {
+    width: 32.666%;
+}
+.col-5 {
+    width: 40.999%;
+}
+.col-6 {
+    width: 49.332%;
+}
+.col-7 {
+    width: 57.665%;
+}
+.col-8 {
+    width: 65.998%;
+}
+.col-9 {
+    width: 74.331%;
+}
+.col-10 {
+    width: 82.664%;
+}
+.col-11 {
+    width: 90.997%;
+}
+.col-12 {
+    width: 99.33%;
+}
+
+.row{
+
+    display:flex;
+}
+
+.row-wrap{
+
+    flex-flow:row wrap;
+}
+
+.column{
+   flex-flow: column;
+}
+
+.column-wrap {
+    flex-flow: column wrap;
+}
+
+
+
+
+.justify-inbetween{
+    justify-content:space-between;
+}
+
+.justify-around{
+    justify-content:space-around;
+}
+.justify-evenly{
+
+    justify-content:space-evenly;
+}
+
+.row-nowrap{
+    flex-flow:row nowrap;
+}
+
+.justifiy-center{
+    justify-content:center;
+}
+
+.align-center
+{
+    align-items:center;
+}
+
+.justify-right{
+    justify-content:flex-end;
+}
+.justifiy-left{
+    justify-content:flex-start;
+}
+
+.align-left{
+    align-items:flex-start;
+}
+
+.footer-content{
+  
+    height:100%;
+    color:white;
+}
+    .footer-content > h1 {
+        display: flex;
+        font-size: .9rem;
+        justify-content:center;
+        text-transform:uppercase;
+        align-items: center;
+        height: 100%;
+    }

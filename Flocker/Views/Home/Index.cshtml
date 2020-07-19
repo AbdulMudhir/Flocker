@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Category>
+﻿@model HomeViewModel
 
 @{
     Layout = "~/Views/_Layout.cshtml";
@@ -9,14 +9,14 @@
 <div class="categories-container">
 
 
-    <ul class="categories">
+    <ul class="categories row justifiy-center align-center">
 
 
 
-        @foreach (var category in Model)
+        @foreach (var category in Model.AllCategories)
         {
 
-            <li><img src="@Url.Content(@category.Image)"/><a asp-controller="Category" asp-action="Index" asp-route-id="@category.CategoryId">@category.Name</a></li>
+            <li class="row justifiy-center align-center"><a asp-controller="Category" asp-action="Index" asp-route-id="@category.CategoryId"><img src="@Url.Content(@category.Image)" />@category.Name</a></li>
 
 
         }
@@ -30,22 +30,117 @@
 
 
 
-<div class="main-container">
+    <section class="header">
 
-    <div class="container">
-        <div class="heading">
-            <h1>BUY & Sell Fast</h1>
-            <h4>Hvae too much stuff you no logner need? Then why not sell them now?</h4>
-            <a>Sell Now</a>
+        <div class="container ">
 
+            <div class="heading-content">
+                <h1 class="heading">BUY & Sell Fast</h1>
+                <h4 class="sub-heading">Have too much stuff you no longer need? Then why not sell them now?</h4>
+                <div class="sellnow row justifiy-center align-center"><a>Sell Now</a></div>
+
+            </div>
+
+            <img class="header-img" src="~/Image/CashBag@2x.png" />
         </div>
 
-        <img src="~/Image/CashBag@2x.png" />
+    </section>
 
 
 
-    </div>
 
 
 
-</div>
+        <section class="spotlight">
+
+            <div class="container">
+
+                <div class="spotlight-heading">
+                    <h1>Spotlight</h1>
+                </div>
+
+                <ul class="spotlight-item">
+
+                    @foreach (var item in Model.AllSpotlight)
+                    {
+
+                        <li class="card-container">
+                            <a asp-controller="Product" asp-action="detail" asp-route-id="@item.ProductId" class="card">
+                                <img class="card-img" src="@Url.Content(item.Image)" />
+                                <img class="crown" src="~/Image/crown.png" />
+                                <div class="card-title">
+                                    <h4>@item.Name.ToUpper()</h4>
+                                    <h5  class="card-price">£@item.Price</h5>
+                                </div>
+                                
+
+                            </a>
+
+
+                        </li>
+
+
+                    }
+
+
+
+                </ul>
+
+
+
+            </div>
+
+
+
+
+
+
+        </section>
+
+
+        <section class="new-content">
+
+            <div class="container">
+
+                <div class="new-heading">
+                    <h1>Newly Added  Product</h1>
+                </div>
+
+                <ul class="new-item">
+
+                    @foreach (var item in Model.AllProduct)
+                    {
+
+                        <li class="card-container ">
+                            <a asp-controller="Product" asp-action="detail" asp-route-id="@item.ProductId" class="card">
+                                <img class="card-img" src="@Url.Content(item.Image)" />
+                                <div class="card-title">
+                                    <h4>@item.Name.ToUpper()</h4>
+                                    <h5 class="card-price">£@item.Price</h5>
+                                </div>
+                            </a>
+
+
+                        </li>
+
+
+                    }
+
+
+
+                </ul>
+
+
+
+            </div>
+
+
+
+
+
+
+        </section>
+
+
+
+

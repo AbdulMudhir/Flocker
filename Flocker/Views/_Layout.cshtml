@@ -10,6 +10,8 @@
         <script src="https://kit.fontawesome.com/3d37a0422a.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+        <link href="~/content/ProductStyleSheet.css" rel="stylesheet" />
         <link href="~/content/reset.css" rel="stylesheet" />
         <link href="~/content/homeStyleSheet.css" rel="stylesheet" />
         <link href="~/content/StyleSheet.css" rel="stylesheet" />
@@ -22,24 +24,32 @@
 
     <body>
 
+        <div class="account-nav">
+            <div >
+                <img src="~/Image/profile.png" />
+                <h6>Account</h6>
+
+            </div>
+
+            <div>
+                <img src="~/Image/heart.png" />
+                <h6>Watchlist</h6>
+
+            </div>
+        </div>
         <nav>
 
-            <div class="nav-container">
 
-                <h1 class="logo">Flocker</h1>
+            <div class="nav-container row justify-around align-center">
 
-                <div class="searchbox-container">
-                    <i class="fa fa-search search-icon" aria-hidden="true"></i>
+
+                <h1 class="logo col-2">Flocker</h1>
+
+                <div class="searchbox-container col-10">
+                    <i class="fa fa-search search-icon row justifiy-center align-center" aria-hidden="true"></i>
 
                     <input type="text" id="searchBox" placeholder="What are you looking for..." />
                 </div>
-
-                <ul class="nav-buttons">
-
-                    <li><a>Login</a></li>
-                    <li><a>Register</a></li>
-
-                </ul>
 
 
 
@@ -51,14 +61,18 @@
         </nav>
 
 
-        @RenderBody()
+        <div class="main-container">
 
 
+            @RenderBody()
+
+        </div>
 
 
         <footer>
-
-            <h1>DEMO WEBSITE CREATED BY Abdul Mudhir</h1>
+            <div class="footer-content container">
+                <h1>DEMO WEBSITE CREATED BY Abdul Mudhir</h1>
+            </div>
         </footer>
 
 

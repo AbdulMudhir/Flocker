@@ -32,6 +32,8 @@ namespace Flocker.Models
 
         public int UserId { get; set; }
 
+        public bool Spotlight { get; set; }
+
         public User Owner { get; set; }
     }
 }

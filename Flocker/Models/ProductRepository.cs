@@ -38,7 +38,7 @@ namespace Flocker.Models
 
         public Product GetProductById(int productId)
         {
-            return _databaseContext.Products.FirstOrDefault(p => p.ProductId == productId);
+            return _databaseContext.Products.Include(p => p.Owner).Include(p=>p.Comment).FirstOrDefault(p => p.ProductId == productId);
         }
     }
 }

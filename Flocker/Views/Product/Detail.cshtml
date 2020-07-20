@@ -33,22 +33,87 @@
 
 <div class="container">
 
-    <ul class="breadcrumbs row">
-
-        <li><a asp-controller="Home" asp-action="index">Home</a></li>
-        <li><a asp-controller="Category" asp-action="category">@Model.Product.Category.Name</a></li>
-        <li>@Model.Product.Name</li>
+    <div class="product-page">
 
 
-    </ul>
 
 
-</div>
+        <ul class="breadcrumbs row ">
+             
+            <li><a asp-controller="Home" asp-action="index" class="inactive-item"> Home<span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2" ></span></a></li>
+            <li><a asp-controller="Category" asp-action="category" class="inactive-item">
+    @Model.Product.Category.Name <span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2" ></span>
+        </a></li>
+            <li class="crumb-product-title">@Model.Product.Name</li>
 
-<section class="productInfo">
-    <div class="container">
+
+        </ul>
 
 
+
+        <section class="product">
+           
+            <div class="product-img">
+                <img src="@Url.Content(@Model.Product.Image)"/>
+            </div>
+
+
+
+            <div class="product-info">
+                <div class="product-edit">
+
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Product.ProductId">
+
+                        <img src="~/Image/cog.png"/>
+
+                        Edit Post
+
+                    </a>
+
+                </div>
+
+                <div class="product-title">
+                    <h1>@Model.Product.Name</h1>
+                </div>
+                
+                <div class="product-description">
+                    <h4>Description</h4>
+                    <h5>@Model.Product.Description</h5>
+
+                </div>
+
+                <div class="product-price">
+                    <h1>£@Model.Product.Price</h1>
+                </div>
+                    <a asp-controller="Product" asp-action="offer" asp-route-id="@Model.Product.ProductId" class="make-offer">Make Offer</a>
+
+                    <a class="add-watchlist" asp-controller="Profile" asp-action="addWish" asp-route-ip="@Model.Product.ProductId"><img src="~/Image/heart.png" /> Add to watch list</a>
+
+                    <div class="seller-profile">
+
+                        <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Image)" />
+                        <h5 class="seller-name">@Model.Product.Owner.Username</h5>
+
+                    </div>
+
+
+             
+
+            </div>
+
+
+
+
+        </section>
+
+        <section class="comments">
+            <h1>Comments</h1>
+            <div class="comment-section">
+                <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Image)" />
+                <textarea type="text" class="comment-box" ></textarea>
+            </div>
+            <div class="submit-section">    <a class="submit">Post comment</a></div>
+        
+        </section>
     </div>
-
-</section>
+</div>

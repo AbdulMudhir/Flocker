@@ -46,5 +46,24 @@ namespace Flocker.Controllers
 
             return View(productView);
         }
+
+
+        public ViewResult Add()
+
+        {
+            ProductViewModel productView = new ProductViewModel();
+
+            productView.Categories = _categoryRepository.AllCategory;
+
+            return View(productView);
+        }
+
+        [HttpPost]
+        public IActionResult Add(ProductViewModel productView)
+        {
+            return RedirectToAction("add");
+        }
+
+
     }
 }

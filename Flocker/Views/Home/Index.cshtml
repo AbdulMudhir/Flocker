@@ -37,7 +37,7 @@
             <div class="heading-content">
                 <h1 class="heading">BUY & Sell Fast</h1>
                 <h4 class="sub-heading">Have too much stuff you no longer need? Then why not sell them now?</h4>
-                <div class="sellnow row justifiy-center align-center"><a>Sell Now</a></div>
+                <div class="sellnow row justifiy-center align-center"><a asp-controller="product" asp-action="add">Sell Now</a></div>
 
             </div>
 
@@ -67,12 +67,13 @@
                         <li class="card-container">
                             <a asp-controller="Product" asp-action="detail" asp-route-id="@item.ProductId" class="card">
                                 <img class="card-img" src="@Url.Content(item.Image)" />
-                                <img class="crown" src="~/Image/crown.png" />
+                                <span class="iconify crown" data-inline="false" data-icon="ant-design:crown-filled" ></span>
+
                                 <div class="card-title">
                                     <h4>@item.Name.ToUpper()</h4>
-                                    <h5  class="card-price">£@item.Price</h5>
+                                    <h5 class="card-price">£@item.Price</h5>
                                 </div>
-                                
+
 
                             </a>
 

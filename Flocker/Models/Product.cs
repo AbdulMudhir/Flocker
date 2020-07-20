@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using Microsoft.VisualBasic;
+using System.Collections.ObjectModel;
+
+
 
 namespace Flocker.Models
 {
@@ -9,6 +14,8 @@ namespace Flocker.Models
     {
 
         public int ProductId { get; set; }
+
+        [DisplayName("Title")]
         public String Name { get; set; }
 
         public decimal Price { get; set; }
@@ -26,9 +33,9 @@ namespace Flocker.Models
         public Category Category { get; set; }
 
 
-        public int LocationId { get; set; }
 
-        public Location Location { get; set; }
+
+        public Collection<Comment> Comment { get; set; }
 
         public int UserId { get; set; }
 

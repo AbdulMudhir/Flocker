@@ -1,0 +1,63 @@
+﻿@model ProductViewModel
+
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+
+<section class="add-container">
+
+
+    <div class="container">
+
+
+        <h1 class="sell-label">Sell an Item</h1>
+        <form asp-controller="Product" asp-action="add" method="post">
+
+
+            <div class="image-container">
+
+                <label>Images</label>
+                <div class="image-selector"><span class="iconify " data-inline="false" data-icon="ant-design:file-image-outlined" ></span></div>
+               
+                <div class="image-holder"></div>
+
+            </div>
+
+
+            <div class="product-container">
+
+                <label>Title</label>
+                <input type="text" required maxlength="100" />
+
+                <label>Description</label>
+
+                <div class="description-content">
+                    <textarea class="description-container" required maxlength="500"></textarea>
+                    <h5 class="description-length">0/500</h5>
+                </div>
+                <label>Category</label>
+                <input type="text" required maxlength="500" />
+
+
+                <label>Price</label>
+                <input type="number" />
+
+            </div>
+
+            <button class="post-button" type="submit">Submit</button>
+
+        </form>
+
+
+
+
+    </div>
+
+
+
+
+</section>

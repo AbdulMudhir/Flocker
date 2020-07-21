@@ -15,15 +15,31 @@
 
 
         <h1 class="sell-label">Sell an Item</h1>
-        <form asp-action="add" method="post" enctype="multipart/form-data"> 
+
+
+        <form asp-action="add" method="post" enctype="multipart/form-data">
 
 
             <div class="image-container">
 
                 <label asp-for="@Model.Images"></label>
-                <input asp-for="@Model.Images"  type="file" accept="image/*" multiple/>
+                <label class="custom-input-block">
+
+                    <input class="input-img" asp-for="@Model.Images" type="file" accept="image/*" multiple />
+
+                </label>
+
+                <label class="photo-count">You can only add <span class="image-total">8</span>  photos </label>
+
+                <div class="preview-container">
+
+
+                </div>
+
+                <span class="img-size-validation">One or more of your image size was too large and has been removed max <span style="font-weight:700">8MB</span></span>
+
                 <span asp-validation-for="@Model.Images"></span>
-                
+
 
             </div>
 
@@ -32,7 +48,7 @@
 
                 <div class="form-group">
                     <label asp-for="@Model.Name"></label>
-                    <input asp-for="@Model.Name" required maxlength="100" />
+                    <input asp-for="@Model.Name" />
                     <span asp-validation-for="@Model.Name"></span>
                 </div>
 
@@ -42,7 +58,7 @@
                     <label asp-for="@Model.Description"></label>
 
                     <div class="description-container">
-                        <textarea asp-for="@Model.Description" class="description-content" required maxlength="500"></textarea>
+                        <textarea asp-for="@Model.Description" class="description-content"></textarea>
                         <h5 class="description-length">0/500</h5>
                         <span asp-validation-for="@Model.Description"></span>
 
@@ -51,15 +67,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="@Model.CategoryId"></label>
-                    <input asp-for="@Model.CategoryId" type="number" required maxlength="500" />
-                    <span asp-validation-for="@Model.CategoryId"></span>
+                    <label asp-for="@Model.Categories"></label>
+                    <select asp-for="Category" asp-items="Model.Categories"></select>
+
+                    <span asp-validation-for="@Model.Categories"></span>
 
                 </div>
 
                 <div class="form-group">
                     <label class="price-label" asp-for="@Model.Price"></label>
-                    <input  class="price" asp-for="@Model.Price" type="number" min="1" step="any"/>
+                    <input class="price" asp-for="@Model.Price" type="number" min="0" step="any" />
+                    <span asp-validation-for="@Model.Price"></span>
                 </div>
             </div>
 
@@ -77,3 +95,4 @@
 
 
 </section>
+<script src="~/script/AddProductScript.js"></script>

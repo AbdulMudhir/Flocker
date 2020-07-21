@@ -50,7 +50,16 @@
 
                                 <div class="card-title">
                                     <h4>@item.Name.ToUpper()</h4>
+
+                                    @if(@item.Price.ToString() == "0.00" )
+                                    {
+                                    <h5 class="card-price">Free</h5>
+                                    }
+                                    else{
+
                                     <h5 class="card-price">£@item.Price</h5>
+                                    }
+
                                 </div>
 
 
@@ -96,7 +105,15 @@
                                 <img class="card-img" src="@Url.Content(item.Images[0].Image)" />
                                 <div class="card-title">
                                     <h4>@item.Name.ToUpper()</h4>
-                                    <h5 class="card-price">£@item.Price</h5>
+                                    @if (@item.Price.ToString() == "0.00")
+                                    {
+                                        <h5 class="card-price">Free</h5>
+                                    }
+                                    else
+                                    {
+
+                                        <h5 class="card-price">£@item.Price</h5>
+                                    }
                                 </div>
                             </a>
 

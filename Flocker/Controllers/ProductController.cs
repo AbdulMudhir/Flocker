@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Flocker.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Flocker.Controllers
@@ -61,21 +62,30 @@ namespace Flocker.Controllers
         public ViewResult Add()
 
         {
+            ProductFormModel productForm = new ProductFormModel();
 
+            foreach (var category in _categoryRepository.AllCategory)
+            {
 
-            return View(new ProductFormModel());
+                productForm.Categories.Add(
+                    new SelectListItem
+                    {
+                        Value = category.CategoryId.ToString(),
+                        Text = category.Name
+                    }); ;
+            }
+
+                return View(productForm);
         }
 
+
+        // made using ajax posting
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Add(ProductFormModel productForm)
         {
 
             // no validation for now
-
-
-
-
-
 
 
 
@@ -88,49 +98,52 @@ namespace Flocker.Controllers
                 Price = productForm.Price,
                 Description = productForm.Description,
                 UserId = 1,
-                CategoryId = productForm.CategoryId,
+                CategoryId = int.Parse(productForm.Category),
+                DatePosted = DateTime.Now.Date
                 
                 };
 
 
-                
-                foreach(var image in productForm.Images)
-                {
 
-                    // get random filename and combine with the extension file camewith
-                    var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(image.FileName);
-                    var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
-                    var filePath = Path.Combine(uploadPath, uniqueFileName);
+                //foreach (var image in productForm.Images)
+                //{
 
-
-                    using (var stream = System.IO.File.Create(filePath))
-                    {
-                        image.CopyTo(stream);
-
-                    }
-
-                    // add all the iamge url to  the product object
-                    productToAdd.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+                //    // get random filename and combine with the extension file camewith
+                //    var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(image.FileName);
+                //    var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
+                //    var filePath = Path.Combine(uploadPath, uniqueFileName);
 
 
-                }
+                //    using (var stream = System.IO.File.Create(filePath))
+                //    {
+                //        image.CopyTo(stream);
 
-                var productID = _productRepository.AddProduct(productToAdd);
+                //    }
 
-                return RedirectToAction("Detail", new { id = productID});
+                //    // add all the iamge url to  the product object
+                //    productToAdd.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+
+
+                //}
+
+                //var productID = _productRepository.AddProduct(productToAdd);
+
+                return Json(new { id = 1, success="true" });
 
             }
 
 
 
+            var errorList = ModelState.ToDictionary(
+      kvp => kvp.Key,
+      kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+  );
 
-
-
-
-          
-
-            return View(productForm);
+            return Json(new { Errors = errorList, success = "false" });
         }
+
+
+     
 
 
 

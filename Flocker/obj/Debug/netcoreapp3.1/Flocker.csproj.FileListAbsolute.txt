@@ -415,3 +415,4 @@ C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.cspr
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\staticwebassets\Flocker.StaticWebAssets.Manifest.cache
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\staticwebassets\Flocker.StaticWebAssets.xml
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.genruntimeconfig.cache
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.csprojAssemblyReference.cache

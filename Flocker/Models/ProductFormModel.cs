@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,11 @@ namespace Flocker.Models
         [DisplayName("Title")]
         public String Name { get; set; }
 
-        [Required]
+
+        [Required(ErrorMessage = "Insert a price")]
         public decimal Price { get; set; }
 
-
+        [Required]
         public Collection<IFormFile> Images { get; set; }
 
 
@@ -37,11 +39,15 @@ namespace Flocker.Models
         public string Description { get; set; }
 
 
+        [Required]
+        public List <SelectListItem> Categories { get; set; } = new List<SelectListItem>();
+
+        public string Category { get; set; }
 
         public int UserId { get; set; }
 
 
-        public int CategoryId { get; set; }
+     
 
 
     }

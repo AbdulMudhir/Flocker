@@ -67,7 +67,16 @@
                 </div>
 
                 <div class="product-price">
-                    <h1>£@Model.Product.Price</h1>
+
+                    @if (@Model.Product.Price.ToString() == "0.00")
+                    {
+                        <h1 >Free</h1>
+                    }
+                    else
+                    {
+                        <h1>£@Model.Product.Price</h1>
+
+                    }
                 </div>
                 <a asp-controller="Product" asp-action="offer" asp-route-id="@Model.Product.ProductId" class="make-offer">Make Offer</a>
 

@@ -29,6 +29,8 @@ namespace Flocker.Models
         [Required(ErrorMessage = "Insert a price")]
         public decimal Price { get; set; }
 
+
+        [DisplayName("Add photos")]
         [Required]
         public Collection<IFormFile> Images { get; set; }
 
@@ -39,6 +41,7 @@ namespace Flocker.Models
         public string Description { get; set; }
 
 
+        [DisplayName("Category")]
         [Required]
         public List <SelectListItem> Categories { get; set; } = new List<SelectListItem>();
 

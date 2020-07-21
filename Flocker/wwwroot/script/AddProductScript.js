@@ -26,22 +26,44 @@ const imgInput = document.querySelector(".input-img");
 const imgPreviewContainer = document.querySelector(".preview-container");
 
 
+
+imgPreviewContainer.addEventListener("DOMNodeInserted", function (event) {
+
+    if (this.childElementCount == 8) {
+        document.querySelector(".custom-input-block").style.cursor = "not-allowed";
+
+      
+        imgInput.disabled = true;
+       
+    }
+
+})
+
+imgPreviewContainer.addEventListener("DOMNodeRemoved", function (event) {
+
+    if (this.childElementCount <= 8) {
+        document.querySelector(".custom-input-block").style.cursor = "pointer";
+
+
+        imgInput.disabled = false;
+
+    }
+
+})
+
+
+
+
 imgInput.addEventListener("change", function (event) {
 
     let imagesUploaded = event.target.files;
 
     const imgSizeValidation = document.querySelector(".img-size-validation");
 
+    
 
+    if (imagesUploaded.length < 8 && imgPreviewContainer.childElementCount < 8) {
 
-    if (imagesUploaded.length > 8) {
-
-        alert("You are only allowed to upload a maximum of 10 files");
-
-        return false;
-    }
-
-    else {
 
         for (let i = 0; i < imagesUploaded.length; i++) {
 
@@ -71,7 +93,16 @@ imgInput.addEventListener("change", function (event) {
             }
 
 
+        }
+
+       
     }
+
+    else {
+        alert("You are only allowed to upload a maximum of 8 files");
+
+        return false;
+        
 
 
     }
@@ -130,12 +161,21 @@ function DisplayErrors(errors) {
 
     for (let i = 0; i < keyObjects.length; i++) {
 
-        if (keyObjects[i].length > 0) {
+        
+        let validationBox = document.querySelector(`span[data-valmsg-for="${keyObjects[i]}"]`);
+        if (errors[keyObjects[i]].length > 0) {
 
-            let validationBox = document.querySelector(`span[data-valmsg-for="${keyObjects[i]}"]`)
+
 
             if (validationBox !== null) {
                 validationBox.innerHTML = errors[keyObjects[i]];
+                validationBox.style.display = "inline-Block";
+            }
+        }
+        else {
+            if (validationBox !== null) {
+                validationBox.innerHTML = "";
+                validationBox.style.display = "None";
             }
         }
 

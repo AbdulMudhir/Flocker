@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20200720115855_initial.Designer.cs" />
     <Compile Remove="Migrations\20200720124332_requriedstatement.cs" />
     <Compile Remove="Migrations\20200720124332_requriedstatement.Designer.cs" />
+    <Compile Remove="Migrations\20200720131054_includingcomments.cs" />
+    <Compile Remove="Migrations\20200720131054_includingcomments.Designer.cs" />
+    <Compile Remove="Migrations\20200720131616_addUser.cs" />
+    <Compile Remove="Migrations\20200720131616_addUser.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\ProductImages\" />
     <Folder Include="wwwroot\script\" />
   </ItemGroup>
 

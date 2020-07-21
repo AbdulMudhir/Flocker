@@ -6,29 +6,8 @@
 }
 
 
-<div class="categories-container">
 
-
-    <ul class="categories row justifiy-center align-center">
-
-
-
-        @foreach (var category in Model.AllCategories)
-        {
-
-            <li class="row justifiy-center align-center"><a asp-controller="Category" asp-action="Index" asp-route-id="@category.CategoryId"><img src="@Url.Content(@category.Image)" />@category.Name</a></li>
-
-
-        }
-
-
-
-    </ul>
-
-
-</div>
-
-
+@await Component.InvokeAsync("CategoryNavigation")
 
     <section class="header">
 
@@ -66,7 +45,7 @@
 
                         <li class="card-container">
                             <a asp-controller="Product" asp-action="detail" asp-route-id="@item.ProductId" class="card">
-                                <img class="card-img" src="@Url.Content(item.Image)" />
+                                <img class="card-img" src="@Url.Content(item.Images[0].Image)" />
                                 <span class="iconify crown" data-inline="false" data-icon="ant-design:crown-filled" ></span>
 
                                 <div class="card-title">
@@ -114,7 +93,7 @@
 
                         <li class="card-container ">
                             <a asp-controller="Product" asp-action="detail" asp-route-id="@item.ProductId" class="card">
-                                <img class="card-img" src="@Url.Content(item.Image)" />
+                                <img class="card-img" src="@Url.Content(item.Images[0].Image)" />
                                 <div class="card-title">
                                     <h4>@item.Name.ToUpper()</h4>
                                     <h5 class="card-price">£@item.Price</h5>

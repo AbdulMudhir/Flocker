@@ -85,6 +85,8 @@ namespace Flocker.Migrations
 
                     b.HasIndex("ProductId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Comments");
 
                     b.HasData(
@@ -136,10 +138,6 @@ namespace Flocker.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -172,7 +170,6 @@ namespace Flocker.Migrations
                             CategoryId = 2,
                             DatePosted = new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
-                            Image = "https://i.imgur.com/w305JQE.png",
                             Name = "XBOX ONE CONTROLLER",
                             Price = 34.99m,
                             Sold = false,
@@ -185,7 +182,6 @@ namespace Flocker.Migrations
                             CategoryId = 1,
                             DatePosted = new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
-                            Image = "~/Image/controller.png",
                             Name = "XBOX ONE CONTROLLER FREE",
                             Price = 34.99m,
                             Sold = false,
@@ -198,7 +194,6 @@ namespace Flocker.Migrations
                             CategoryId = 1,
                             DatePosted = new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
-                            Image = "~/Image/cupboard.png",
                             Name = "CUPBOARD",
                             Price = 34.99m,
                             Sold = false,
@@ -211,7 +206,6 @@ namespace Flocker.Migrations
                             CategoryId = 2,
                             DatePosted = new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
-                            Image = "~/Image/bed.png",
                             Name = "BED SHEET",
                             Price = 34.99m,
                             Sold = true,
@@ -224,12 +218,63 @@ namespace Flocker.Migrations
                             CategoryId = 3,
                             DatePosted = new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
-                            Image = "~/Image/games.png",
                             Name = "XBOX ONE GAMES",
                             Price = 7200.99m,
                             Sold = true,
                             Spotlight = false,
                             UserId = 3
+                        });
+                });
+
+            modelBuilder.Entity("Flocker.Models.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Image = "~/Image/bed.png",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Image = "~/Image/bed.png",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Image = "~/Image/bed.png",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Image = "~/Image/bed.png",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Image = "~/Image/bed.png",
+                            ProductId = 3
                         });
                 });
 
@@ -287,6 +332,12 @@ namespace Flocker.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Flocker.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Flocker.Models.Product", b =>
@@ -300,6 +351,15 @@ namespace Flocker.Migrations
                     b.HasOne("Flocker.Models.User", "Owner")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Flocker.Models.ProductImage", b =>
+                {
+                    b.HasOne("Flocker.Models.Product", null)
+                        .WithMany("Image")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

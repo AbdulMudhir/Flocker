@@ -23,8 +23,7 @@ namespace Flocker.Models
         public decimal Price { get; set; }
 
 
-        [Required]
-        public string Image { get; set; }
+        public Collection<ProductImage> Images { get; set; } = new Collection<ProductImage>();
 
         [MaxLength(500)]
         [Required]

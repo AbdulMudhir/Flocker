@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,28 +19,46 @@ namespace Flocker.Models
             _databaseContext = databaseContext;
         }
 
-        public IEnumerable<Product> AllProduct => _databaseContext.Products.Where(p=> !p.Sold).Include(p => p.Category).Include(p => p.Owner);
+        public IEnumerable<Product> AllProduct => _databaseContext.Products.Where(p=> !p.Sold).Include(p => p.Category).Include(p => p.Owner).Include(p=>p.Images);
 
-        public IEnumerable<Product> AllProductOnSpotlight => _databaseContext.Products.Where(p => p.Spotlight);
+        public IEnumerable<Product> AllProductOnSpotlight => _databaseContext.Products.Where(p => p.Spotlight).Include(p => p.Images);
 
         public IEnumerable<Product> AllProductByCategory(int categoryId)
         {
-            return _databaseContext.Products.Where(p => p.CategoryId == categoryId);
+            return _databaseContext.Products.Where(p => p.CategoryId == categoryId).Include(p => p.Images);
         }
 
         public IEnumerable<Product> AllProductByUserId(int ownerId)
         {
-            return _databaseContext.Products.Where(p => p.UserId == ownerId);
+            return _databaseContext.Products.Where(p => p.UserId == ownerId).Include(p => p.Images);
         }
 
         public IEnumerable<Product> AllProductNotSold()
         {
-            return _databaseContext.Products.Where(p => !p.Sold).Include(p => p.Category).Include(p => p.Owner);
+            return _databaseContext.Products.Where(p => !p.Sold).Include(p => p.Category).Include(p => p.Owner).Include(p => p.Images);
         }
 
         public Product GetProductById(int productId)
         {
-            return _databaseContext.Products.Include(p => p.Owner).Include(p=>p.Comment).FirstOrDefault(p => p.ProductId == productId);
+            return _databaseContext.Products.Include(p => p.Images).Include(p => p.Owner).Include(p=>p.Comment).ThenInclude(c=> c.User).FirstOrDefault(p => p.ProductId == productId);
         }
+
+
+
+        public int AddProduct(Product product)
+        {
+
+
+            var productAdded = _databaseContext.Products.Add(product);
+
+            _databaseContext.SaveChanges();
+
+
+            return productAdded.Entity.ProductId;
+
+        }
+
+
+
     }
 }

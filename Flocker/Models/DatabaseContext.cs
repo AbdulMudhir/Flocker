@@ -20,6 +20,8 @@ namespace Flocker.Models
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet <ProductImage> ProductImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -61,7 +63,6 @@ namespace Flocker.Models
                      Name = "XBOX ONE CONTROLLER",
                      Price = 34.99M,
                      CategoryId = 2,
-                     Image = "https://i.imgur.com/w305JQE.png",
                      Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
                      Sold = false,
                      DatePosted = DateTime.Today,
@@ -78,7 +79,6 @@ namespace Flocker.Models
                    Price = 34.99M,
                    Name = "XBOX ONE CONTROLLER FREE",
                    CategoryId = 1,
-                   Image = "~/Image/controller.png",
                    Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
                    Sold = false,
                    DatePosted = DateTime.Today,
@@ -96,7 +96,6 @@ namespace Flocker.Models
                    Price = 34.99M,
                    Name = "CUPBOARD",
                    CategoryId = 1,
-                   Image = "~/Image/cupboard.png",
                    Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
                    Sold = false,
                    DatePosted = DateTime.Today,
@@ -116,7 +115,6 @@ namespace Flocker.Models
                    Name = "BED SHEET",
                    Price = 34.99M,
                    CategoryId = 2,
-                   Image = "~/Image/bed.png",
                    Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
                    Sold = true,
                    DatePosted = DateTime.Today,
@@ -136,7 +134,6 @@ namespace Flocker.Models
                    Name = "XBOX ONE GAMES",
                    Price = 7200.99M,
                    CategoryId = 3,
-                   Image = "~/Image/games.png",
                    Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
                    Sold = true,
                    DatePosted = DateTime.Today,
@@ -147,6 +144,66 @@ namespace Flocker.Models
 
 
               );
+
+            modelBuilder.Entity<ProductImage>().HasData(new ProductImage
+
+            {
+                Id = 1,
+                ProductId = 1,
+                Image = "~/Image/bed.png"
+
+            }
+
+                );
+
+
+            modelBuilder.Entity<ProductImage>().HasData(new ProductImage
+
+            {
+                Id = 2,
+                ProductId = 1,
+                Image = "~/Image/bed.png"
+
+            }
+
+                );
+
+
+            modelBuilder.Entity<ProductImage>().HasData(new ProductImage
+
+            {
+                Id = 3,
+                ProductId = 2,
+                Image = "~/Image/bed.png"
+
+            }
+
+                );
+
+
+            modelBuilder.Entity<ProductImage>().HasData(new ProductImage
+
+            {
+                Id = 4,
+                ProductId = 2,
+                Image = "~/Image/bed.png"
+
+            }
+
+                );
+
+
+            modelBuilder.Entity<ProductImage>().HasData(new ProductImage
+
+            {
+                Id = 5,
+                ProductId = 3,
+                Image = "~/Image/bed.png"
+
+            }
+
+                );
+
 
 
             modelBuilder.Entity<User>().HasData(

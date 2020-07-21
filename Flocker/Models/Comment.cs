@@ -19,5 +19,7 @@ namespace Flocker.Models
 
         public int UserId { get; set; }
 
+        public User User { get; set; }
+
     }
 }

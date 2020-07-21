@@ -20,7 +20,7 @@ namespace Flocker.Models
             Name= "XBOX ONE CONTROLLER",
             Price = 34.99M,
             CategoryId = 2,
-            Image ="https://i.imgur.com/w305JQE.png",
+            
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = false,
             DatePosted = DateTime.Today,
@@ -36,7 +36,7 @@ namespace Flocker.Models
             Price = 34.99M,
                     Name= "XBOX ONE CONTROLLER FREE",
             CategoryId = 2,
-            Image ="~/Image/controller.png",
+         
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = false,
             DatePosted = DateTime.Today,
@@ -52,7 +52,7 @@ namespace Flocker.Models
             Price = 34.99M,
                     Name= "CUPBOARD",
             CategoryId = 3,
-            Image ="~/Image/cupboard.png",
+          
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = false,
             DatePosted = DateTime.Today,
@@ -68,7 +68,7 @@ namespace Flocker.Models
                    Name= "BED SHEET",
             Price = 34.99M,
             CategoryId = 3,
-            Image ="~/Image/bed.png",
+           
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -84,7 +84,7 @@ namespace Flocker.Models
             Name= "XBOX ONE GAMES",
             Price = 7200.99M,
             CategoryId = 3,
-            Image ="~/Image/games.png",
+           
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -99,7 +99,7 @@ namespace Flocker.Models
             Name= "XBOX ONE GAMES",
             Price = 7200.99M,
             CategoryId = 3,
-            Image ="~/Image/games.png",
+           
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -115,7 +115,7 @@ namespace Flocker.Models
             Name= "XBOX ONE GAMES",
             Price = 7200.99M,
             CategoryId = 3,
-            Image ="~/Image/games.png",
+           
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -131,7 +131,7 @@ namespace Flocker.Models
             Name= "XBOX ONE GAMES",
             Price = 7200.99M,
             CategoryId = 3,
-            Image ="~/Image/games.png",
+           
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -147,7 +147,7 @@ namespace Flocker.Models
             Name= "XBOX ONE GAMES",
             Price = 7200.99M,
             CategoryId = 3,
-            Image ="~/Image/games.png",
+            
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -164,7 +164,7 @@ namespace Flocker.Models
             Name= "Product 6",
             Price = 100.99M,
             CategoryId = 3,
-            Image ="https://i.imgur.com/w305JQE.png",
+           
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -179,7 +179,7 @@ namespace Flocker.Models
             Name= "Product 6",
             Price = 34.99M,
             CategoryId = 3,
-            Image ="https://i.imgur.com/w305JQE.png",
+            
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -194,7 +194,7 @@ namespace Flocker.Models
                    Name= "Product 4",
             Price = 34.99M,
             CategoryId = 3,
-            Image ="https://i.imgur.com/w305JQE.png",
+            
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -210,7 +210,7 @@ namespace Flocker.Models
                    Name= "Product 4",
             Price = 34.99M,
             CategoryId = 3,
-            Image ="https://i.imgur.com/w305JQE.png",
+           
             Description = "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for",
             Sold = true,
             DatePosted = DateTime.Today,
@@ -254,6 +254,9 @@ namespace Flocker.Models
 
         }
 
-
-}
+        public int AddProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

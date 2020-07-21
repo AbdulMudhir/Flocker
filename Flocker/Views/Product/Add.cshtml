@@ -1,4 +1,4 @@
-﻿@model ProductViewModel
+﻿@model ProductFormModel
 
 
 @{
@@ -15,38 +15,54 @@
 
 
         <h1 class="sell-label">Sell an Item</h1>
-        <form asp-controller="Product" asp-action="add" method="post">
+        <form asp-action="add" method="post" enctype="multipart/form-data"> 
 
 
             <div class="image-container">
 
-                <label>Images</label>
-                <div class="image-selector"><span class="iconify " data-inline="false" data-icon="ant-design:file-image-outlined" ></span></div>
-               
-                <div class="image-holder"></div>
+                <label asp-for="@Model.Images"></label>
+                <input asp-for="@Model.Images"  type="file" accept="image/*" multiple/>
+                <span asp-validation-for="@Model.Images"></span>
+                
 
             </div>
 
 
             <div class="product-container">
 
-                <label>Title</label>
-                <input type="text" required maxlength="100" />
-
-                <label>Description</label>
-
-                <div class="description-content">
-                    <textarea class="description-container" required maxlength="500"></textarea>
-                    <h5 class="description-length">0/500</h5>
+                <div class="form-group">
+                    <label asp-for="@Model.Name"></label>
+                    <input asp-for="@Model.Name" required maxlength="100" />
+                    <span asp-validation-for="@Model.Name"></span>
                 </div>
-                <label>Category</label>
-                <input type="text" required maxlength="500" />
 
 
-                <label>Price</label>
-                <input type="number" />
+                <div class="form-group">
 
+                    <label asp-for="@Model.Description"></label>
+
+                    <div class="description-container">
+                        <textarea asp-for="@Model.Description" class="description-content" required maxlength="500"></textarea>
+                        <h5 class="description-length">0/500</h5>
+                        <span asp-validation-for="@Model.Description"></span>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="@Model.CategoryId"></label>
+                    <input asp-for="@Model.CategoryId" type="number" required maxlength="500" />
+                    <span asp-validation-for="@Model.CategoryId"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="price-label" asp-for="@Model.Price"></label>
+                    <input  class="price" asp-for="@Model.Price" type="number" min="1" step="any"/>
+                </div>
             </div>
+
 
             <button class="post-button" type="submit">Submit</button>
 

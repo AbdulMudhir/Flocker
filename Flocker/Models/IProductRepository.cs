@@ -27,6 +27,9 @@ namespace Flocker.Models
         public IEnumerable<Product> AllProductOnSpotlight { get; }
 
 
+        public int AddProduct(Product product);
+
+
 
 
     }

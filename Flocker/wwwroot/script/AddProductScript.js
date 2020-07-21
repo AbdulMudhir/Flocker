@@ -65,7 +65,7 @@ imgInput.addEventListener("change", function (event) {
 
     
 
-    if (imagesUploaded.length < 12 && imgPreviewContainer.childElementCount < 12) {
+    if (imagesUploaded.length < 8 && imgPreviewContainer.childElementCount < 8) {
 
 
         for (let i = 0; i < imagesUploaded.length; i++) {

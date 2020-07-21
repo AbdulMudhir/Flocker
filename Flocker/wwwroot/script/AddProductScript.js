@@ -30,7 +30,9 @@ const imgPreviewContainer = document.querySelector(".preview-container");
 imgPreviewContainer.addEventListener("DOMNodeInserted", function (event) {
 
     if (this.childElementCount == 8) {
-        document.querySelector(".custom-input-block").style.cursor = "not-allowed";
+        let imglabel = document.querySelector(".custom-input-block");
+        imglabel.style.cursor = "not-allowed";
+        imglabel.style.backgroundColor = "#636262";
 
       
         imgInput.disabled = true;
@@ -42,8 +44,9 @@ imgPreviewContainer.addEventListener("DOMNodeInserted", function (event) {
 imgPreviewContainer.addEventListener("DOMNodeRemoved", function (event) {
 
     if (this.childElementCount <= 8) {
-        document.querySelector(".custom-input-block").style.cursor = "pointer";
-
+        let imglabel = document.querySelector(".custom-input-block");
+        imglabel.style.cursor = "pointer";
+        imglabel.style.backgroundColor = "#F6F6F6";
 
         imgInput.disabled = false;
 
@@ -62,7 +65,7 @@ imgInput.addEventListener("change", function (event) {
 
     
 
-    if (imagesUploaded.length < 8 && imgPreviewContainer.childElementCount < 8) {
+    if (imagesUploaded.length < 12 && imgPreviewContainer.childElementCount < 12) {
 
 
         for (let i = 0; i < imagesUploaded.length; i++) {
@@ -156,13 +159,14 @@ async function ImgsUrlToBlob(form, imgUrl) {
 
 function DisplayErrors(errors) {
 
-
     let keyObjects = Object.keys(errors)
+
 
     for (let i = 0; i < keyObjects.length; i++) {
 
         
         let validationBox = document.querySelector(`span[data-valmsg-for="${keyObjects[i]}"]`);
+
         if (errors[keyObjects[i]].length > 0) {
 
 
@@ -249,7 +253,7 @@ async function AjaxForm(event) {
 
                     else {
 
-                        DisplayErrors(response.errors);
+                        DisplayErrors(response.Errors);
                     
 
                     }

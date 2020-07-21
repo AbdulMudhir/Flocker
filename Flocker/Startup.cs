@@ -34,7 +34,7 @@ namespace Flocker
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
-
+            services.AddControllersWithViews().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(
 
@@ -43,7 +43,7 @@ namespace Flocker
 
                 ));
 
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
 
         }
 

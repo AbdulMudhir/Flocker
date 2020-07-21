@@ -103,34 +103,47 @@ namespace Flocker.Controllers
                 
                 };
 
+                if(productForm.Images.Count <=8) { 
 
 
-                //foreach (var image in productForm.Images)
-                //{
 
-                //    // get random filename and combine with the extension file camewith
-                //    var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(image.FileName);
-                //    var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
-                //    var filePath = Path.Combine(uploadPath, uniqueFileName);
+                foreach (var image in productForm.Images)
+                {
 
-
-                //    using (var stream = System.IO.File.Create(filePath))
-                //    {
-                //        image.CopyTo(stream);
-
-                //    }
-
-                //    // add all the iamge url to  the product object
-                //    productToAdd.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+                    // get random filename and combine with the extension file camewith
+                    var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(image.FileName);
+                    var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
+                    var filePath = Path.Combine(uploadPath, uniqueFileName);
 
 
-                //}
+                    using (var stream = System.IO.File.Create(filePath))
+                    {
+                        image.CopyTo(stream);
 
-                //var productID = _productRepository.AddProduct(productToAdd);
+                    }
 
-                return Json(new { id = 1, success="true" });
+                    // add all the iamge url to  the product object
+                    productToAdd.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+
+
+                }
+
+                var productID = _productRepository.AddProduct(productToAdd);
+
+                return Json(new { id = productID, success="true" });
 
             }
+
+                else
+                {
+
+
+
+                    return Json(new { Errors = new {  Images = new string[] { "You can only add 8  photos" } }, success = "false" });
+                }
+
+            }
+           
 
 
 

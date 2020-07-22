@@ -1,4 +1,4 @@
-﻿@model ProductFormModel
+﻿@model ProductFormEditModel
 
 
 @{
@@ -14,7 +14,7 @@
     <div class="container">
 
 
-        <h1 class="sell-label">Sell an Item</h1>
+        <h1 class="sell-label">Edit an Item</h1>
 
 
         <form asp-action="add" method="post" enctype="multipart/form-data">
@@ -33,6 +33,18 @@
 
                 <div class="preview-container">
 
+                    @foreach (var imgURl in Model.ImagesUrl)
+                    {
+
+                        <div class="picture">
+
+                            <img class="remove" src="/Image/close.svg" />
+                            <img src="@imgURl" asp-append-version="true" />
+
+
+                        </div>
+
+                    }
 
 
 
@@ -40,7 +52,7 @@
 
                 <span class="img-size-validation">One or more of your image size was too large and has been removed max <span style="font-weight:700">8MB</span></span>
 
-                <span asp-validation-for="@Model.ImagesFiles"></span>
+                <span asp-validation-for="@Model.ImagesFiles "></span>
 
 
             </div>
@@ -94,6 +106,11 @@
 
             <button class="post-button" type="submit">Submit</button>
 
+
+            <input type="hidden" asp-for="@Model.ProductId" />
+            <input type="hidden" asp-for="@Model.UserId" />
+
+
         </form>
 
 
@@ -106,4 +123,4 @@
 
 </section>
 <script src="~/script/ProductForm.js"></script>
-<script src="~/script/AddProductAjax.js"></script>
+<script src="~/script/EditProductAjax.js"></script>

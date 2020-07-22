@@ -58,6 +58,14 @@ namespace Flocker.Models
 
         }
 
+        public int EditProduct(Product product)
+        {
+
+
+
+            return 1;
+        }
+
 
 
     }

@@ -258,5 +258,10 @@ namespace Flocker.Models
         {
             throw new NotImplementedException();
         }
+
+        public int EditProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

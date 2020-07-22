@@ -416,3 +416,4 @@ C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\staticwebass
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\staticwebassets\Flocker.StaticWebAssets.xml
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.genruntimeconfig.cache
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.csprojAssemblyReference.cache
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Product\Edit.cshtml.g.cs

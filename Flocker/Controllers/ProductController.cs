@@ -103,28 +103,31 @@ namespace Flocker.Controllers
                 
                 };
 
-                if(productForm.Images.Count <=8) { 
+                if(productForm.ImagesFiles.Count <=8) { 
 
 
 
-                foreach (var image in productForm.Images)
-                {
-
-                    // get random filename and combine with the extension file camewith
-                    var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(image.FileName);
-                    var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
-                    var filePath = Path.Combine(uploadPath, uniqueFileName);
-
-
-                    using (var stream = System.IO.File.Create(filePath))
+                foreach (var image in productForm.ImagesFiles)
                     {
-                        image.CopyTo(stream);
 
-                    }
+                        // check image size is not greater than 8mb otherwise skip
+                        if (image.Length / 1024 / 1024 <= 8)
+                        {
+                            // get random filename and combine with the extension file camewith
+                            var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(image.FileName);
+                            var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
+                            var filePath = Path.Combine(uploadPath, uniqueFileName);
 
-                    // add all the iamge url to  the product object
-                    productToAdd.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
 
+                            using (var stream = System.IO.File.Create(filePath))
+                            {
+                                image.CopyTo(stream);
+
+                            }
+
+                            // add all the iamge url to  the product object
+                            productToAdd.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+                        }
 
                 }
 
@@ -158,6 +161,149 @@ namespace Flocker.Controllers
 
      
 
+
+
+        public IActionResult Edit(int id)
+        {
+
+            Product product = _productRepository.GetProductById(id);
+
+            if (product != null)
+            {
+
+
+               
+
+                ProductFormEditModel productEditForm = new ProductFormEditModel
+                { 
+                
+                    ProductId = product.ProductId,
+                    Name = product.Name,
+                    Price =   product.Price,
+                    Description = product.Description,
+                    UserId = product.UserId,
+                    CategoryId = product.CategoryId
+                    
+                    
+
+                
+                };
+
+
+
+
+                foreach(var img in product.Images)
+                {
+                    productEditForm.ImagesUrl.Add(img.Image);
+                }
+
+
+                foreach (var category in _categoryRepository.AllCategory)
+                {
+
+                    productEditForm.Categories.Add(
+                        new SelectListItem
+                        {
+                            Value = category.CategoryId.ToString(),
+                            Text = category.Name
+                        }); ;
+                }
+
+
+
+
+                return View(productEditForm);
+            }
+
+
+
+
+
+
+
+            return NotFound();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ProductFormEditModel productForm)
+        {
+
+
+
+
+
+            // no validation for now
+
+
+
+            if (ModelState.IsValid)
+            {
+
+
+                Product product = _productRepository.GetProductById(productForm.ProductId);
+
+
+                if (product != null)
+                {
+
+
+                    
+
+                    
+
+                    foreach (var image in productForm.ImagesFiles)
+                    {
+
+                        // check image size is not greater than 8mb otherwise skip
+                        if (image.Length / 1024 / 1024 <= 8)
+                        {
+                            // get random filename and combine with the extension file camewith
+                            var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(image.FileName);
+                            var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
+                            var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+
+                            using (var stream = System.IO.File.Create(filePath))
+                            {
+                                image.CopyTo(stream);
+
+                            }
+
+                            // add all the iamge url to  the product object
+                            productForm.ImagesCollection.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+                        }
+
+                    }
+
+                    /// change this below after test
+                    return Json(new { success = "true" });
+
+
+
+                }
+
+
+                else
+                {
+
+                    return NotFound();
+
+                }
+
+
+            }
+
+
+            var errorList = ModelState.ToDictionary(
+                 kvp => kvp.Key,
+                 kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+             );
+            return Json(new { Errors = errorList, success = "false" });
+
+
+        }
 
 
     }

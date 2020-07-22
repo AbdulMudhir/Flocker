@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,14 +10,12 @@ using System.Threading.Tasks;
 
 namespace Flocker.Models
 {
-    public class ProductFormModel
-
+    public class ProductFormEditModel
     {
 
 
-
-
-
+        public int ProductId { get; set; }
+      
 
         [MaxLength(100)]
         [Required]
@@ -34,6 +31,9 @@ namespace Flocker.Models
         [Required]
         public Collection<IFormFile> ImagesFiles { get; set; }
 
+        public Collection<string> ImagesUrl { get; set; } = new Collection<string>();
+
+        public Collection<ProductImage> Images { get; set; } = new Collection<ProductImage>();
 
 
         [MaxLength(500)]
@@ -43,14 +43,13 @@ namespace Flocker.Models
 
         [DisplayName("Category")]
         [Required]
-        public List <SelectListItem> Categories { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
 
+
+        public int CategoryId { get; set; }
         public string Category { get; set; }
 
         public int UserId { get; set; }
-
-
-     
 
 
     }

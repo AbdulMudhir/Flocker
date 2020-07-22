@@ -1,11 +1,15 @@
 ﻿
 
+
+
 const descriptionBox = document.querySelector(".description-content");
 
 
+descriptionBox.addEventListener("input", updateDescriptionCount);
 
-descriptionBox.addEventListener("input", function (event) {
 
+
+function updateDescriptionCount() {
     const descriptionLengthCounter = document.querySelector(".description-length");
 
     let inputCharacterLength = descriptionBox.value.length;
@@ -16,9 +20,17 @@ descriptionBox.addEventListener("input", function (event) {
 
     descriptionLengthCounter.textContent = `${inputCharacterLength}/${maxCharacterLength}`
 
+}
 
 
-});
+
+updateDescriptionCount();
+
+
+
+
+
+
 
 
 const imgInput = document.querySelector(".input-img");
@@ -29,14 +41,14 @@ const imgPreviewContainer = document.querySelector(".preview-container");
 
 imgPreviewContainer.addEventListener("DOMNodeInserted", function (event) {
 
-    if (this.childElementCount == 8) {
+    if (this.childElementCount >= 8) {
         let imglabel = document.querySelector(".custom-input-block");
         imglabel.style.cursor = "not-allowed";
         imglabel.style.backgroundColor = "#636262";
 
-      
+
         imgInput.disabled = true;
-       
+
     }
 
 })
@@ -56,67 +68,81 @@ imgPreviewContainer.addEventListener("DOMNodeRemoved", function (event) {
 
 
 
-
 imgInput.addEventListener("change", function (event) {
 
     let imagesUploaded = event.target.files;
 
     const imgSizeValidation = document.querySelector(".img-size-validation");
 
-    
 
-    if (imagesUploaded.length < 8 && imgPreviewContainer.childElementCount < 8) {
+    const totalImagesToUpload = imagesUploaded.length;
 
-
-        for (let i = 0; i < imagesUploaded.length; i++) {
+    const totalImagesInContainer = imgPreviewContainer.childElementCount;
 
 
 
-            if (imagesUploaded[i].size / 1024 / 1024 > 8) {
+    if (totalImagesToUpload < 8 && totalImagesInContainer < 8) {
 
-                imgSizeValidation.style.display = "inline-block";
 
-            }
 
-            else {
+        if (totalImagesToUpload <= (8 - totalImagesInContainer )) {
 
-                let imagePreview = document.createElement("div");
-                imagePreview.setAttribute("class", "picture");
+            for (let i = 0; i < imagesUploaded.length; i++) {
 
-                let totalImagesUploaded = imgPreviewContainer.childElementCount;
 
-                imageTemplate = ` <img class="remove" src="/Image/close.svg" />
+
+                if (imagesUploaded[i].size / 1024 / 1024 > 8) {
+
+                    imgSizeValidation.style.display = "inline-block";
+
+                }
+
+                else {
+
+                    let imagePreview = document.createElement("div");
+                    imagePreview.setAttribute("class", "picture");
+
+                    let totalImagesUploaded = imgPreviewContainer.childElementCount;
+
+                    imageTemplate = ` <img class="remove" src="/Image/close.svg" />
 
                             <img src="${URL.createObjectURL(imagesUploaded[i])}" />`
 
-                imagePreview.innerHTML = imageTemplate;
+                    imagePreview.innerHTML = imageTemplate;
 
-                imgPreviewContainer.appendChild(imagePreview);
+                    imgPreviewContainer.appendChild(imagePreview);
+
+                }
+
 
             }
 
-
+           
+            setupImgDelete()
+            return true;
         }
 
-       
+
     }
 
-    else {
-        alert("You are only allowed to upload a maximum of 8 files");
+ 
+     alert("You are only allowed to upload a maximum of 8 files");
 
         return false;
-        
 
 
-    }
-    
-    setupImgDelete()
+
+
+
 
 });
 
+
+
+
 function setupImgDelete() {
 
-    
+
     let removeButton = document.getElementsByClassName("remove");
 
 
@@ -124,8 +150,8 @@ function setupImgDelete() {
 
         removeButton[i].addEventListener("click", function (event) {
 
-          
-           event.target.parentElement.remove();
+
+            event.target.parentElement.remove();
 
         }
 
@@ -134,7 +160,7 @@ function setupImgDelete() {
 
 
 }
-
+setupImgDelete()
 
 
 async function ImgsUrlToBlob(form, imgUrl) {
@@ -148,8 +174,9 @@ async function ImgsUrlToBlob(form, imgUrl) {
                 let extension = blob[i].type.split("/").pop();
 
                 let imgFile = new File([blob[i]], `imgUpload${i}.${extension}`);
-             
-                form.append("Images", imgFile)
+
+     
+                form.append("ImagesFiles", imgFile)
             }
 
         })
@@ -164,7 +191,7 @@ function DisplayErrors(errors) {
 
     for (let i = 0; i < keyObjects.length; i++) {
 
-        
+
         let validationBox = document.querySelector(`span[data-valmsg-for="${keyObjects[i]}"]`);
 
         if (errors[keyObjects[i]].length > 0) {
@@ -183,34 +210,31 @@ function DisplayErrors(errors) {
             }
         }
 
-        
+
     }
 
 }
 
 
-async function AjaxForm(event) {
-    event.preventDefault();
-
-    // reset input container
-    imgInput.value = "";
-
-
-    const form = new FormData(event.target);
-
+function imgURLsFromContainer() {
 
     let imgUrl = [];
 
 
 
-   
+    let imgsInPreviewContainer = document.getElementsByClassName("picture");
+
+
+
     // using 1 as dom objects dont start from 0
 
-    for (var i = 1; i <= imgPreviewContainer.childElementCount; i++) {
+    for (var i = 0; i < imgsInPreviewContainer.length; i++) {
 
-            let pictureContainer = imgPreviewContainer.childNodes[i];
 
-            let previewImage = pictureContainer.lastChild
+
+        let previewImage = imgsInPreviewContainer[i].lastElementChild
+
+
 
         if (previewImage !== null) {
 
@@ -220,95 +244,9 @@ async function AjaxForm(event) {
         }
 
         else {
- 
+
         }
     }
 
-
-
-
-    ImgsUrlToBlob(form, imgUrl).
-        then(() => {
-
-            let ajax = new XMLHttpRequest();
-
-
-            ajax.open("Post", "/product/add", true);
-            ajax.responseType = 'json';
-
-
-            ajax.onload = function () {
-
-
-                let response = this.response;
-
-                if (this.status == 200) {
-
-
-                    if (response.success == "true") {
-
-                        window.location.replace(`/Product/detail/${response.id}`)
-
-                    }
-
-                    else {
-
-                        DisplayErrors(response.Errors);
-                    
-
-                    }
-
-                }
-
-                else {
-
-                    alert("Looks like there is an issue with the server, please try again in few minutes");
-                }
-
-            }
-
-
-            ajax.send(form);
-
-        }
-       
-
-    )
-  
-
-  
+    return imgUrl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const submitButton = document.querySelector("form");
-
-submitButton.addEventListener("submit", AjaxForm )
-
-

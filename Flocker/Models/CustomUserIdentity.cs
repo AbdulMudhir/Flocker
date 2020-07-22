@@ -9,5 +9,6 @@ namespace Flocker.Models
     public class CustomUserIdentity:IdentityUser
     {
         public string Avatar { get; set; }
+
     }
 }

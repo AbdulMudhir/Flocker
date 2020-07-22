@@ -42,19 +42,29 @@
             </div>
 
 
+           
+        
 
             <div class="product-info">
-                <div class="product-edit">
 
-                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Product.ProductId">
+            
 
-                        <img src="~/Image/cog.png" />
+                @if (Model.Product.Owner.UserName.Equals(User.Identity.Name))
+                {
 
-                        Edit Post
 
-                    </a>
+                    <div class="product-edit">
 
-                </div>
+                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Product.ProductId">
+
+                            <img src="~/Image/cog.png" />
+
+                            Edit Post
+
+                        </a>
+
+                    </div>
+                } 
 
                 <div class="product-title">
                     <h1>@Model.Product.Name</h1>
@@ -70,7 +80,7 @@
 
                     @if (@Model.Product.Price.ToString() == "0.00")
                     {
-                        <h1 >Free</h1>
+                        <h1>Free</h1>
                     }
                     else
                     {
@@ -84,8 +94,8 @@
 
                 <div class="seller-profile">
 
-                    @*<img class="seller-img" src="@Url.Content(@Model.Product.Owner.Image)" />
-                    <h5 class="seller-name">@Model.Product.Owner.Username</h5>*@
+                    <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
+                    <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
 
                 </div>
 

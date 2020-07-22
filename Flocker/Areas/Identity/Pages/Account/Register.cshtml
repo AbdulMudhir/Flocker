@@ -4,34 +4,79 @@
     ViewData["Title"] = "Register";
 }
 
- 
-
-    
-    <div class="container">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
 
 
-    </div>
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+
+<div class="register-container">
+
+
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post" id="registerform" enctype="multipart/form-data">
+
+        <div class="profile__picture-container">
+
+
+
+            <label class="custom-avatar-block">
+                <input style="visibility:hidden" class="avatar-img" asp-for="Input.AvatarFile" accept="image/*" />
+            </label>
+
+
+
+
+
+
+        </div>
+
+        <span class="img-size-validation">Image size is too large and has been removed max <span style="font-weight:700">8MB</span></span>
+
+        <span asp-validation-for="Input.AvatarFile"></span>
+
+
+        <div class="form-group register-group">
+            <label asp-for="Input.Username"></label>
+            <input asp-for="Input.Username" />
+            <span asp-validation-for="Input.Username"></span>
+
+
+            <label asp-for="Input.Email"></label>
+            <input asp-for="Input.Email" class="form-control" />
+            <span asp-validation-for="Input.Email"></span>
+
+
+
+            <label asp-for="Input.Password"></label>
+            <input asp-for="Input.Password" class="form-control" />
+            <span asp-validation-for="Input.Password"></span>
+            <label asp-for="Input.ConfirmPassword"></label>
+            <input asp-for="Input.ConfirmPassword" />
+            <span asp-validation-for="Input.ConfirmPassword"></span>
+
+
+            <div asp-validation-summary="All">
+            </div>
+
+        </div>
+
+
+        <button type="submit" class="register-button">Register</button>
+
+
+
+
+
+
+
+
+
+
+
+    </form>
+
+
+
+
+
+
+</div>
+<link href="~/content/RegisterStyle.css" rel="stylesheet" />
+<script src="~/script/RegiserationScript.js"></script>

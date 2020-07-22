@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Flocker.Areas.Identity.Pages.Account
 {
@@ -24,17 +27,19 @@ namespace Flocker.Areas.Identity.Pages.Account
         private readonly UserManager<CustomUserIdentity> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
+        private IWebHostEnvironment _hostingEnvironment;
         public RegisterModel(
             UserManager<CustomUserIdentity> userManager,
             SignInManager<CustomUserIdentity> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IWebHostEnvironment environment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _hostingEnvironment = environment; 
         }
 
         [BindProperty]
@@ -44,12 +49,23 @@ namespace Flocker.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+
+
         public class InputModel
         {
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [Required(ErrorMessage ="The Username field is required.")]
+            public string Username { get; set; }
+
+            [Required]
+            [Display(Name ="Profile Picture")]
+            public IFormFile AvatarFile { get; set; }
+
+
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -75,8 +91,35 @@ namespace Flocker.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new CustomUserIdentity { UserName = Input.Email, Email = Input.Email };
+
+                var avatarFile = Input.AvatarFile;
+
+                // check image size is not greater than 8mb otherwise skip
+                if (avatarFile.Length / 1024 / 1024 >= 8)
+                {
+
+                    ModelState.AddModelError("Input.AvatarFile", "Image size is too large and has been removed max 8MB");
+                    return Page();
+                }
+                    // get random filename and combine with the extension file camewith
+                    var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(avatarFile.FileName);
+                var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
+                var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+
+                using (var stream = System.IO.File.Create(filePath))
+                {
+                    avatarFile.CopyTo(stream);
+
+                }
+
+      
+                var user = new CustomUserIdentity { UserName = Input.Username, Email = Input.Email, Avatar = $"~/ProductImages/{uniqueFileName}"};
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+
+
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

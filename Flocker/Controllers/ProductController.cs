@@ -14,7 +14,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace Flocker.Controllers
 {
 
-    [Authorize]
     public class ProductController : Controller
     {
         private IProductRepository _productRepository;
@@ -63,7 +62,7 @@ namespace Flocker.Controllers
 
 
 
-
+        [Authorize]
         public ViewResult Add()
 
         {
@@ -86,7 +85,7 @@ namespace Flocker.Controllers
             return View(productForm);
         }
 
-
+        [Authorize]
         // made using ajax posting
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -94,10 +93,6 @@ namespace Flocker.Controllers
         {
 
             // no validation for now
-
-            if (User.Identity.IsAuthenticated)
-            {
-
             
 
             if (ModelState.IsValid)
@@ -113,7 +108,7 @@ namespace Flocker.Controllers
                         DatePosted = DateTime.Now.Date,
                         OwnerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
 
-            };
+                                           };
 
                 if (productForm.ImagesFiles.Count <= 8)
                 {
@@ -160,6 +155,7 @@ namespace Flocker.Controllers
 
             }
 
+            else { 
 
 
 
@@ -170,15 +166,13 @@ namespace Flocker.Controllers
 
                         return Json(new { Errors = errorList, success = "false" });
 
+                                    }
 
-            }
 
-            else
-            {
+
 
                 return NotFound();
-            }
-
+        
 
 
 
@@ -190,17 +184,22 @@ namespace Flocker.Controllers
 
 
 
-
+        [Authorize]
         public IActionResult Edit(int id)
         {
 
 
-            if (User.Identity.IsAuthenticated)
-            {
-
+         
           
 
             Product product = _productRepository.GetProductById(id);
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // check the product being edited is by the correct owner
+            if(product.OwnerId.Equals(currentUserId))
+            { 
+
 
                 if (product != null)
                 {
@@ -251,8 +250,8 @@ namespace Flocker.Controllers
                 {
                     return NotFound();
                 }
-            }
 
+            }
 
 
 
@@ -262,7 +261,7 @@ namespace Flocker.Controllers
             return NotFound();
         }
 
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ProductFormEditModel productForm)
@@ -344,7 +343,7 @@ namespace Flocker.Controllers
 
         }
 
-
+        [Authorize]
         public IActionResult Delete(int id)
         {
 

@@ -58,9 +58,16 @@ namespace Flocker.Models
 
         }
 
-        public int EditProduct(Product product)
+        public int EditProduct(Product product, ProductFormEditModel productForm)
         {
 
+            product.Name = productForm.Name;
+            product.Price = productForm.Price;
+            product.Description = productForm.Description;
+            product.Images = productForm.Images;
+            product.CategoryId = productForm.CategoryId;
+
+            _databaseContext.SaveChanges();
 
 
             return 1;

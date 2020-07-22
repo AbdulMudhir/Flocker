@@ -259,7 +259,7 @@ namespace Flocker.Models
             throw new NotImplementedException();
         }
 
-        public int EditProduct(Product product)
+        public int EditProduct(Product product, ProductFormEditModel productForm)
         {
             throw new NotImplementedException();
         }

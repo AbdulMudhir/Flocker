@@ -28,7 +28,7 @@ namespace Flocker.Models
 
 
         public int AddProduct(Product product);
-        public int EditProduct(Product product);
+        public int EditProduct(Product product, ProductFormEditModel productForm);
 
 
 

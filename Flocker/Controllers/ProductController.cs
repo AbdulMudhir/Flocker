@@ -249,9 +249,6 @@ namespace Flocker.Controllers
                 {
 
 
-                    
-
-                    
 
                     foreach (var image in productForm.ImagesFiles)
                     {
@@ -272,10 +269,14 @@ namespace Flocker.Controllers
                             }
 
                             // add all the iamge url to  the product object
-                            productForm.ImagesCollection.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+                            productForm.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
                         }
 
                     }
+
+
+                    _productRepository.EditProduct(product,productForm);
+
 
                     /// change this below after test
                     return Json(new { success = "true" });

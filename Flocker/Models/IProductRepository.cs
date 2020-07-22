@@ -31,6 +31,7 @@ namespace Flocker.Models
         public int EditProduct(Product product, ProductFormEditModel productForm);
 
 
+        public int DeleteProduct(Product product);
 
     }
 }

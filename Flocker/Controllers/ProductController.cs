@@ -307,5 +307,30 @@ namespace Flocker.Controllers
         }
 
 
+        public IActionResult Delete(int id)
+        {
+
+            var product = _productRepository.GetProductById(id);
+
+            if (product != null)
+            {
+
+                _productRepository.DeleteProduct(product);
+                return RedirectToAction("Index", "Home");
+            }
+
+            else
+            {
+
+
+
+                return Ok();
+            }
+
+
+
+        }
+
+
     }
 }

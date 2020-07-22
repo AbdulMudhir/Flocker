@@ -245,6 +245,7 @@
         width:100%;
         max-width:700px;
         overflow:unset;
+        position:relative;
     }
 
 
@@ -386,6 +387,8 @@
     background-color: #F6F6F6;
     resize: none;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size:14px;
     padding: .4em .8em;
     height: inherit;
     border-radius: 4px;
@@ -448,4 +451,54 @@
     margin-top:.8em;
     display:none;
 
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5em;
+}
+
+.title-container h1{
+    margin:0;
+}
+.delete-product-button {
+    cursor:pointer;
+    background: #dd2424;
+    color: white;
+    padding: .5em 2em;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.confirmation-box {
+    background: rgba(173, 171, 171, 0.61);
+    position: absolute;
+    top: 0;
+    right:-129px;
+    padding:1em;
+    border-radius:4px;
+    transform: translate(-50%,-50%);
+    background: white;
+    z-index: 10;
+    text-align:center;
+    display:none;
+}
+
+.confirmation-box a{
+    margin: .5em;
+    display:inline-block;
+    margin-bottom:0;
+    padding:0 .6em;
+    text-decoration:none;
+}
+
+    .confirmation-box :last-child{
+        color:#ABA1A1
+    }
+.confirmation-box :last-child:hover{
+    color:black;
+    cursor:pointer;
 }

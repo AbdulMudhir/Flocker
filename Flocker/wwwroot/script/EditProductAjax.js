@@ -1,5 +1,31 @@
 ﻿
 
+const deleteProductButton = document.querySelector(".delete-product-button");
+
+deleteProductButton.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    const confirmationBox = document.querySelector(".confirmation-box");
+
+
+    confirmationBox.style.display = "block";
+
+})
+
+
+const noButton = document.querySelector(".no-button");
+
+noButton.addEventListener("click",  function(event){
+
+    event.preventDefault();
+
+    event.target.parentElement.style.display = "none";
+
+})
+
+
+
 async function AjaxForm(event) {
     event.preventDefault();
 

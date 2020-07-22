@@ -263,5 +263,10 @@ namespace Flocker.Models
         {
             throw new NotImplementedException();
         }
+
+        public int DeleteProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

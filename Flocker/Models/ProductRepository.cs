@@ -67,13 +67,19 @@ namespace Flocker.Models
             product.Images = productForm.Images;
             product.CategoryId = productForm.CategoryId;
 
-            _databaseContext.SaveChanges();
+            
 
 
-            return 1;
+            return _databaseContext.SaveChanges(); 
         }
 
+        public int DeleteProduct(Product product)
+        {
 
+            _databaseContext.Products.Remove(product);
 
+            return _databaseContext.SaveChanges();
+            ;
+        }
     }
 }

@@ -8,91 +8,108 @@
 
 
 
-<section class="add-container">
+    <section class="add-container">
 
 
-    <div class="container">
+
+        <div class="container">
 
 
-        <h1 class="sell-label">Edit an Item</h1>
 
 
-        <form asp-action="add" method="post" enctype="multipart/form-data">
 
 
-            <div class="image-container">
+            <div class="title-container">
+                <h1 class="sell-label">Edit an Item</h1>
+                <a class="delete-product-button">
+                    Delete
+                </a>
 
-                <label asp-for="@Model.ImagesFiles "></label>
-                <label class="custom-input-block">
+            </div>
+            <div class="confirmation-box">
 
-                    <input class="input-img" asp-for="@Model.ImagesFiles " type="file" accept="image/*" multiple />
-
-                </label>
-
-                <label class="photo-count">You can only add <span class="image-total">8</span>  photos </label>
-
-                <div class="preview-container">
-
-                    @foreach (var imgURl in Model.ImagesUrl)
-                    {
-
-                        <div class="picture">
-
-                            <img class="remove" src="/Image/close.svg" />
-                            <img src="@imgURl" asp-append-version="true" />
+                <h1>Are you sure you want to delete</h1>
+                <a asp-action="Delete" asp-route-id="@Model.ProductId">Yes</a>
+                <a class="no-button">No</a>
 
 
-                        </div>
+            </div>
+            <form asp-action="add" method="post" enctype="multipart/form-data">
 
-                    }
 
+                <div class="image-container">
+
+                    <label asp-for="@Model.ImagesFiles "></label>
+                    <label class="custom-input-block">
+
+                        <input class="input-img" asp-for="@Model.ImagesFiles " type="file" accept="image/*" multiple />
+
+                    </label>
+
+                    <label class="photo-count">You can only add <span class="image-total">8</span>  photos </label>
+
+                    <div class="preview-container">
+
+                        @foreach (var imgURl in Model.ImagesUrl)
+                        {
+
+                            <div class="picture">
+
+                                <img class="remove" src="/Image/close.svg" />
+                                <img src="@imgURl" asp-append-version="true" />
+
+
+                            </div>
+
+                        }
+
+
+
+                    </div>
+
+                    <span class="img-size-validation">One or more of your image size was too large and has been removed max <span style="font-weight:700">8MB</span></span>
+
+                    <span asp-validation-for="@Model.ImagesFiles "></span>
 
 
                 </div>
 
-                <span class="img-size-validation">One or more of your image size was too large and has been removed max <span style="font-weight:700">8MB</span></span>
 
-                <span asp-validation-for="@Model.ImagesFiles "></span>
-
-
-            </div>
-
-
-            <div class="form-group">
-                <label asp-for="@Model.Name"></label>
-                <input asp-for="@Model.Name" />
-                <span asp-validation-for="@Model.Name"></span>
+                <div class="form-group">
+                    <label asp-for="@Model.Name"></label>
+                    <input asp-for="@Model.Name" />
+                    <span asp-validation-for="@Model.Name"></span>
 
 
-                <label class="description-label" asp-for="@Model.Description"></label>
+                    <label class="description-label" asp-for="@Model.Description"></label>
 
-                <div class="description-container">
-                    <textarea asp-for="@Model.Description" class="description-content"></textarea>
-                    <h5 class="description-length">0/500</h5>
+                    <div class="description-container">
+                        <textarea asp-for="@Model.Description" class="description-content"></textarea>
+                        <h5 class="description-length">0/500</h5>
 
+
+                    </div>
+                    <span asp-validation-for="@Model.Description"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="@Model.Categories"></label>
+                    <select asp-for="CategoryId" asp-items="Model.Categories"></select>
+
+                    <span asp-validation-for="@Model.Categories"></span>
 
                 </div>
-                <span asp-validation-for="@Model.Description"></span>
-            </div>
-
-
-
-            <div class="form-group">
-                <label asp-for="@Model.Categories"></label>
-                <select asp-for="CategoryId" asp-items="Model.Categories"></select>
-
-                <span asp-validation-for="@Model.Categories"></span>
-
-            </div>
 
 
 
 
-            <div class="form-group">
-                <label class="price-label" asp-for="@Model.Price"></label>
-                <input class="price" asp-for="@Model.Price" type="number" min="0" step="any" />
-                <span asp-validation-for="@Model.Price"></span>
-            </div>
+                <div class="form-group">
+                    <label class="price-label" asp-for="@Model.Price"></label>
+                    <input class="price" asp-for="@Model.Price" type="number" min="0" step="any" />
+                    <span asp-validation-for="@Model.Price"></span>
+                </div>
 
 
 
@@ -104,23 +121,23 @@
 
 
 
-            <button class="post-button" type="submit">Submit</button>
+                <button class="post-button" type="submit">Submit</button>
 
 
-            <input type="hidden" asp-for="@Model.ProductId" />
-            <input type="hidden" asp-for="@Model.UserId" />
+                <input type="hidden" asp-for="@Model.ProductId" />
+                <input type="hidden" asp-for="@Model.UserId" />
 
 
-        </form>
-
-
-
-
-    </div>
+            </form>
 
 
 
 
-</section>
+        </div>
+
+
+
+
+    </section>
 <script src="~/script/ProductForm.js"></script>
 <script src="~/script/EditProductAjax.js"></script>

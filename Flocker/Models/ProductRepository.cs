@@ -19,7 +19,7 @@ namespace Flocker.Models
             _databaseContext = databaseContext;
         }
 
-        public IEnumerable<Product> AllProduct => _databaseContext.Products.Where(p=> !p.Sold).Include(p => p.Category).Include(p => p.Owner).Include(p=>p.Images);
+        public IEnumerable<Product> AllProduct => _databaseContext.Products.Where(p => !p.Sold).Include(p => p.Category).Include(p => p.Owner).Include(p => p.Images);
 
         public IEnumerable<Product> AllProductOnSpotlight => _databaseContext.Products.Where(p => p.Spotlight).Include(p => p.Images);
 
@@ -28,9 +28,9 @@ namespace Flocker.Models
             return _databaseContext.Products.Where(p => p.CategoryId == categoryId).Include(p => p.Images);
         }
 
-        public IEnumerable<Product> AllProductByUserId(int ownerId)
+        public IEnumerable<Product> AllProductByUserId(string ownerId)
         {
-            return _databaseContext.Products.Where(p => p.UserId == ownerId).Include(p => p.Images);
+            return _databaseContext.Products.Where(p => p.OwnerId.Equals(ownerId)).Include(p => p.Images);
         }
 
         public IEnumerable<Product> AllProductNotSold()
@@ -40,7 +40,7 @@ namespace Flocker.Models
 
         public Product GetProductById(int productId)
         {
-            return _databaseContext.Products.Include(p => p.Images).Include(p => p.Owner).Include(p=>p.Comment).ThenInclude(c=> c.User).FirstOrDefault(p => p.ProductId == productId);
+            return _databaseContext.Products.Include(p => p.Images).Include(p => p.Owner).Include(p => p.Comments).ThenInclude(c => c.User).FirstOrDefault(p => p.ProductId == productId);
         }
 
 
@@ -67,10 +67,10 @@ namespace Flocker.Models
             product.Images = productForm.Images;
             product.CategoryId = productForm.CategoryId;
 
-            
 
 
-            return _databaseContext.SaveChanges(); 
+
+            return _databaseContext.SaveChanges();
         }
 
         public int DeleteProduct(Product product)

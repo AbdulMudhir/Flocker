@@ -13,6 +13,32 @@
     <Compile Remove="Migrations\20200720131054_includingcomments.Designer.cs" />
     <Compile Remove="Migrations\20200720131616_addUser.cs" />
     <Compile Remove="Migrations\20200720131616_addUser.Designer.cs" />
+    <Compile Remove="Migrations\20200722161343_userdatabase.cs" />
+    <Compile Remove="Migrations\20200722161343_userdatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200722161726_addedidentity.cs" />
+    <Compile Remove="Migrations\20200722161726_addedidentity.Designer.cs" />
+    <Compile Remove="Migrations\20200722163514_test.cs" />
+    <Compile Remove="Migrations\20200722163514_test.Designer.cs" />
+    <Compile Remove="Migrations\20200722163626_test.cs" />
+    <Compile Remove="Migrations\20200722163626_test.Designer.cs" />
+    <Compile Remove="Migrations\20200722164310_test.cs" />
+    <Compile Remove="Migrations\20200722164310_test.Designer.cs" />
+    <Compile Remove="Migrations\20200722164345_test.cs" />
+    <Compile Remove="Migrations\20200722164345_test.Designer.cs" />
+    <Compile Remove="Migrations\20200722164416_IdentityMigration.cs" />
+    <Compile Remove="Migrations\20200722164416_IdentityMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200722164542_tes.cs" />
+    <Compile Remove="Migrations\20200722164542_tes.Designer.cs" />
+    <Compile Remove="Migrations\20200722165010_identitytwo.cs" />
+    <Compile Remove="Migrations\20200722165010_identitytwo.Designer.cs" />
+    <Compile Remove="Migrations\20200722165818_addedOwnerId.cs" />
+    <Compile Remove="Migrations\20200722165818_addedOwnerId.Designer.cs" />
+    <Compile Remove="Migrations\20200722175708_Test.cs" />
+    <Compile Remove="Migrations\20200722175708_Test.Designer.cs" />
+    <Compile Remove="Migrations\20200722182858_comment.cs" />
+    <Compile Remove="Migrations\20200722182858_comment.Designer.cs" />
+    <Compile Remove="Migrations\20200722183417_test.cs" />
+    <Compile Remove="Migrations\20200722183417_test.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

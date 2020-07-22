@@ -1,7 +1,5 @@
 ﻿
 
-
-
 const descriptionBox = document.querySelector(".description-content");
 
 

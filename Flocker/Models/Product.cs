@@ -43,13 +43,14 @@ namespace Flocker.Models
 
 
 
+        public string OwnerId { get; set; }
 
-        public Collection<Comment> Comment { get; set; }
+        public CustomUserIdentity Owner { get; set; }
 
-        public int UserId { get; set; }
+
+        public Collection<Comment> Comments { get; set; }
 
         public bool Spotlight { get; set; }
 
-        public User Owner { get; set; }
     }
 }

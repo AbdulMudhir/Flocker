@@ -1,5 +1,8 @@
 ﻿
 
+document.querySelector("#product-submittionform").addEventListener("submit", AjaxForm);
+
+
 const deleteProductButton = document.querySelector(".delete-product-button");
 
 deleteProductButton.addEventListener("click", function (event) {

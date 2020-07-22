@@ -1,7 +1,15 @@
 ﻿
 
+document.querySelector("#product-submittionform").addEventListener("submit", AjaxForm);
+
+
+
+
+
 async function AjaxForm(event) {
     event.preventDefault();
+
+   
 
     // reset input container
     imgInput.value = "";

@@ -21,7 +21,7 @@ namespace Flocker.Models
 
 
 
-        public IEnumerable<Product> AllProductByUserId(int ownerId);
+        public IEnumerable<Product> AllProductByUserId(string ownerId);
 
 
         public IEnumerable<Product> AllProductOnSpotlight { get; }

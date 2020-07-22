@@ -32,9 +32,10 @@ namespace Flocker
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IUserRepository,UserRepository>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllersWithViews().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
+            services.AddDefaultIdentity<CustomUserIdentity>().AddEntityFrameworkStores<DatabaseContext>();
+            services.AddRazorPages();
 
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(
 
@@ -61,6 +62,8 @@ namespace Flocker
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -70,6 +73,8 @@ namespace Flocker
 
 
                     );
+
+                endpoints.MapRazorPages();
             });
         }
     }

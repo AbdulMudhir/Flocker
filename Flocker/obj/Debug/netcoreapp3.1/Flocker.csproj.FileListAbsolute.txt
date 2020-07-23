@@ -431,3 +431,5 @@ C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Areas\
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\_Layout.cshtml.g.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Index.cshtml.g.cs
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_profileNavigation.cshtml.g.cs
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\_ProfileLayout.cshtml.g.cs

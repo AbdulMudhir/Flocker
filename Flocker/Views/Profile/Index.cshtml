@@ -1,8 +1,65 @@
 ﻿
+@model IEnumerable<Product>
+
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/_Layout.cshtml";
+    Layout = "~/Views/_ProfileLayout.cshtml";
 }
 
-<h1>Index</h1>
 
+
+
+<link href="~/content/ProfileStylesheet.css" rel="stylesheet" />
+
+
+<h1 class="profile-table-title">My Products</h1>
+
+<div class="table ">
+    <div class="table-title row align-center">
+        <h4>Category</h4>
+        <h4>Product Name</h4>
+    </div>
+
+    @foreach (var item in Model)
+    {
+
+        <div class="cell row align-center">
+            <a asp-controller="Category" asp-action="Index" asp-route-id="@item.CategoryId" class="category row justifiy-center align-center">@item.Category.Name</a>
+            <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId" class="product-name row  align-center">@item.Name</a>
+            <div class="options row row justifiy-center align-center">
+
+
+                @if (item.Sold)
+                {
+                    <a class="sold row justifiy-center align-center">Sold</a>
+                }
+                else
+                {
+                    <a class="delete row justifiy-center align-center delete-product-button">Delete</a>
+                    <div class="confirmation-box" id="@item.ProductId">
+
+                        <h1>Are you sure you want to delete</h1>
+                        <a class="yes-button">Yes</a>
+                        <a class="no-button">No</a>
+
+
+                    </div>
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.ProductId" class="edit row justifiy-center align-center">Edit</a>
+                }
+
+            </div>
+
+        </div>
+
+    }
+
+
+
+
+
+
+</div>
+
+
+
+<script src="~/script/DeleteScript.js"></script>

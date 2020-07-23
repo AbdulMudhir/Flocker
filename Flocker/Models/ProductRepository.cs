@@ -30,7 +30,7 @@ namespace Flocker.Models
 
         public IEnumerable<Product> AllProductByUserId(string ownerId)
         {
-            return _databaseContext.Products.Where(p => p.OwnerId.Equals(ownerId)).Include(p => p.Images);
+            return _databaseContext.Products.Where(p => p.OwnerId.Equals(ownerId)).Include(p => p.Images).Include(p=>p.Category);
         }
 
         public IEnumerable<Product> AllProductNotSold()

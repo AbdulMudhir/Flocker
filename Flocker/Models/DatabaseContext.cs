@@ -22,6 +22,8 @@ namespace Flocker.Models
 
         public DbSet <Comment> Comments { get; set; }
 
+        public DbSet<Offer> Offers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

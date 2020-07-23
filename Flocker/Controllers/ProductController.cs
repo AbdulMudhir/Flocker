@@ -344,28 +344,59 @@ namespace Flocker.Controllers
         }
 
         [Authorize]
-        public IActionResult Delete(int id)
+        public IActionResult Delete([FromBody]int id)
         {
 
             var product = _productRepository.GetProductById(id);
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
             if (product != null)
             {
 
-                _productRepository.DeleteProduct(product);
-                return RedirectToAction("Index", "Home");
+                if(product.OwnerId == userId)
+                {
+                    _productRepository.DeleteProduct(product);
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
 
-            else
+
+            return NotFound();
+
+        }
+        [Authorize]
+        public IActionResult DeleteProduct( int id)
+        {
+
+            var product = _productRepository.GetProductById(id);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            if (product != null)
             {
 
+                if (product.OwnerId == userId)
+                {
+                    _productRepository.DeleteProduct(product);
+                    return RedirectToAction("Index", "Home");
+                }
 
-
-                return Ok();
             }
 
 
+            return NotFound();
 
+        }
+
+        [Authorize]
+        public IActionResult MakeOffer()
+        {
+
+            return Json(new { success = "true" });
         }
 
 

@@ -4,14 +4,16 @@ using Flocker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Flocker.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200723211816_priceadded")]
+    partial class priceadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,9 +162,6 @@ namespace Flocker.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DatePosted")
-                        .HasColumnType("datetime2");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -173,9 +172,6 @@ namespace Flocker.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("isApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isPending")
                         .HasColumnType("bit");
 
                     b.HasKey("OfferId");

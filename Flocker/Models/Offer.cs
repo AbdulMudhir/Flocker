@@ -9,9 +9,14 @@ namespace Flocker.Models
     {
         public int OfferId { get; set; }
 
+        public decimal Price { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
 
+        public DateTime DatePosted { get; set; }
+
+
+        public bool isPending { get; set; }
         public string UserId { get; set; }
         public CustomUserIdentity User { get; set; }
 

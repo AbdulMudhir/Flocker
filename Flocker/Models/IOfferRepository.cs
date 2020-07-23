@@ -10,5 +10,9 @@ namespace Flocker.Models
 
         public IEnumerable<Offer> AllOffersByUserId(string userid);
         public IEnumerable<Offer> AllBuyerOffersByOwnerId(string userid);
+
+        public Offer GetOfferForProductByUser(int productID, string userId);
+
+        public void AddOffer(Offer offer);
     }
 }

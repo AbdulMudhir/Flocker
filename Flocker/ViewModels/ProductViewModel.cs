@@ -12,7 +12,7 @@ namespace Flocker.Models
 
         public IEnumerable<Category> Categories { get; set; }
 
-
+        public bool HasOffer { get; set; }
 
     }
 }

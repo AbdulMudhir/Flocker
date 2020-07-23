@@ -22,11 +22,15 @@ namespace Flocker.Controllers
 
         private IWebHostEnvironment _hostingEnvironment;
 
-        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IWebHostEnvironment environment)
+        private IOfferRepository _offerRepository;
+
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IWebHostEnvironment environment, IOfferRepository offerRepository)
         {
             _productRepository = productRepository;
 
             _categoryRepository = categoryRepository;
+
+            _offerRepository = offerRepository;
 
             _hostingEnvironment = environment;
         }
@@ -47,14 +51,43 @@ namespace Flocker.Controllers
             }
 
 
+
             ProductViewModel productView = new ProductViewModel();
+
+
 
             productView.Product = product;
             productView.Categories = _categoryRepository.AllCategory;
 
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+           
+
+            var offer =  _offerRepository.GetOfferForProductByUser(product.ProductId, userId);
+
+            if (offer != null)
+                {
+                   
+                    if (offer.isPending)
+                    {
+                        productView.HasOffer = true;
+                    }
 
 
 
+                }
+                else
+                {
+                    productView.HasOffer = false;
+
+                }
+
+
+
+            }
             return View(productView);
         }
 
@@ -392,11 +425,65 @@ namespace Flocker.Controllers
 
         }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
         [Authorize]
-        public IActionResult MakeOffer()
+        public IActionResult MakeOffer(Offer offer)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return Json(new { success = "true" });
+
+            var product = _productRepository.GetProductById(offer.ProductId);
+
+            if(product != null)
+            {
+
+                if(!product.Sold)
+                {
+
+                
+            
+
+
+
+            // will check latest offer
+            var checkOfferAlreadyExist = _offerRepository.GetOfferForProductByUser(offer.ProductId, userId);
+
+
+            if (checkOfferAlreadyExist == null )
+            {
+
+                        offer.UserId = userId;
+                        offer.DatePosted = DateTime.Now.Date;
+                        offer.isPending = true;
+
+                        _offerRepository.AddOffer(offer);
+
+                return Json(new { success = "True", message = "Offer has been sent" });
+            }
+
+            // if the offer is not approved and is not in pending state  means product has been rejected
+            else if(!checkOfferAlreadyExist.isApproved && !checkOfferAlreadyExist.isPending )
+            {
+                        offer.UserId = userId;
+                        _offerRepository.AddOffer(offer);
+                        return Json(new { success = "true", message = "Offer has been sent" });
+            }
+
+            // user already has an offer pending
+            else
+            {
+                return Json(new { success = "false", message = "Offer is already pending" });
+
+            }
+                }
+
+                return Json(new { success = "false", message = "Product has already been sold" });
+
+            }
+
+            return NotFound();
+
         }
 
 

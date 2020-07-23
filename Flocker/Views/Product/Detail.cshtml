@@ -48,6 +48,28 @@
             <div class="product-info">
 
 
+                <div class="offer-container">
+
+                    <form method="post" id="offer-form" class="row column align-center justifiy-center">
+
+                        <img src="~/Image/close.svg" class="close-offerform" />
+
+                        <input type="hidden" name="ProductId" value="@Model.Product.ProductId" />
+
+                        <h1>Offer Price</h1>
+
+                        <input name="Price" type="number" min="1" step="any" required />
+                        <h6 class="field-validation-error">Test</h6>
+
+                        <button type="submit">Send Offer</button>
+
+                    </form>
+
+
+
+                </div>
+
+
 
                 @if (Model.Product.Owner.UserName.Equals(User.Identity.Name))
                 {
@@ -70,7 +92,7 @@
                     <h1>@Model.Product.Name</h1>
                 </div>
 
-                
+
 
                 <div class="product-price">
 
@@ -93,12 +115,20 @@
 
                 </div>
 
-
-                @if (!Model.Product.Owner.UserName.Equals(User.Identity.Name) && User.Identity.IsAuthenticated)
+                @if (!Model.Product.Sold)
                 {
-                    <a asp-controller="Product" asp-action="offer" asp-route-id="@Model.Product.ProductId" class="make-offer">Make Offer</a>
-
-                    <a class="add-watchlist" asp-controller="Profile" asp-action="addWish" asp-route-ip="@Model.Product.ProductId"><img src="~/Image/heart.png" /> Add to watch list</a>
+                    @if (!Model.Product.Owner.UserName.Equals(User.Identity.Name) && User.Identity.IsAuthenticated)
+                    {
+                        @if (!Model.HasOffer)
+                        {
+                            <a class="make-offer">Make Offer</a>
+                        }
+                        else
+                        {
+                            <a class="offer-pending">Offer Pending</a>
+                        }
+                        <a class="add-watchlist" asp-controller="Profile" asp-action="addWish" asp-route-ip="@Model.Product.ProductId"><img src="~/Image/heart.png" /> Add to watch list</a>
+                    }
                 }
                 <div class="seller-profile">
 
@@ -121,34 +151,67 @@
     </div>
 
 </div>
+<div class="bottom-container">
 
-<div class="half-container bottom-container row " >
-    <div class="product-description">
-        <h4>Description</h4>
-        <h5>@Model.Product.Description</h5>
+    <div class="half-container">
 
-    </div>
-    <section class="comments">
-        <h1>Comments</h1>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <div class="comment-section">
 
-                <img class="seller-img" src="@Url.Content(UserManager.GetUserAsync(User).Result.Avatar)" />
 
-                <textarea type="text" class="comment-box"></textarea>
+
+
+
+        <section class="product">
+
+            <div class="product-description">
+                <h4>Description</h4>
+                <h5>@Model.Product.Description</h5>
+
             </div>
-            <div class="submit-section">    <a class="submit">Post comment</a></div>
-        }
-        else
-        {
-            <div class="comment-section">
+            <section
+           
 
-                <h1>Login to post a comment</h1>
 
-            </div>}
 
-    </section>
+
+
+
+
+                    <section class="comments">
+                        <h1>Comments</h1>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="comment-section">
+
+                                <img class="seller-img" src="@Url.Content(UserManager.GetUserAsync(User).Result.Avatar)" />
+
+                                <textarea type="text" class="comment-box"></textarea>
+                            </div>
+                            <div class="submit-section">    <a class="submit">Post comment</a></div>
+                        }
+                        else
+                        {
+                            <div class="comment-section">
+
+                                <h1>Login to post a comment</h1>
+
+                            </div>}
+
+                    </section>
+
+
+
+
+
+
+
+
+        </section>
 
 
 </div>
+
+</div>
+
+
+
+<script src="~/script/ProductDetailScripts.js"></script>

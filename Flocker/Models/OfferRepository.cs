@@ -15,6 +15,14 @@ namespace Flocker.Models
             _databaseContext = databaseContext;
         }
 
+        public void AddOffer(Offer offer)
+        {
+
+            _databaseContext.Offers.Add(offer);
+
+            _databaseContext.SaveChanges();
+        }
+
         public IEnumerable<Offer> AllBuyerOffersByOwnerId(string userid)
         {
 
@@ -24,6 +32,12 @@ namespace Flocker.Models
         public IEnumerable<Offer> AllOffersByUserId(string userid)
         {
             return _databaseContext.Offers.Where(o => o.UserId.Equals( userid));
+        }
+
+        public Offer GetOfferForProductByUser(int productID, string userId)
+        {
+
+            return _databaseContext.Offers.OrderBy(o => o.DatePosted).FirstOrDefault(o => o.UserId == userId && o.ProductId == productID);
         }
     }
 }

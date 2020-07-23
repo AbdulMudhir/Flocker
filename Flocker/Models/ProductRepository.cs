@@ -21,11 +21,11 @@ namespace Flocker.Models
 
         public IEnumerable<Product> AllProduct => _databaseContext.Products.Where(p => !p.Sold).Include(p => p.Category).Include(p => p.Owner).Include(p => p.Images);
 
-        public IEnumerable<Product> AllProductOnSpotlight => _databaseContext.Products.Where(p => p.Spotlight).Include(p => p.Images);
+        public IEnumerable<Product> AllProductOnSpotlight => _databaseContext.Products.Where(p => p.Spotlight && !p.Sold).Include(p => p.Images);
 
         public IEnumerable<Product> AllProductByCategory(int categoryId)
         {
-            return _databaseContext.Products.Where(p => p.CategoryId == categoryId).Include(p => p.Images);
+            return _databaseContext.Products.Where(p => p.CategoryId == categoryId && !p.Sold).Include(p => p.Images);
         }
 
         public IEnumerable<Product> AllProductByUserId(string ownerId)

@@ -47,7 +47,7 @@
 
             <div class="product-info">
 
-            
+
 
                 @if (Model.Product.Owner.UserName.Equals(User.Identity.Name))
                 {
@@ -64,7 +64,7 @@
                         </a>
 
                     </div>
-                } 
+                }
 
                 <div class="product-title">
                     <h1>@Model.Product.Name</h1>
@@ -88,21 +88,25 @@
 
                     }
                 </div>
-                <a asp-controller="Product" asp-action="offer" asp-route-id="@Model.Product.ProductId" class="make-offer">Make Offer</a>
 
-                <a class="add-watchlist" asp-controller="Profile" asp-action="addWish" asp-route-ip="@Model.Product.ProductId"><img src="~/Image/heart.png" /> Add to watch list</a>
 
-                <div class="seller-profile">
+                @if (!Model.Product.Owner.UserName.Equals(User.Identity.Name))
+                {
+                    <a asp-controller="Product" asp-action="offer" asp-route-id="@Model.Product.ProductId" class="make-offer">Make Offer</a>
 
-                    <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
-                    <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
+                    <a class="add-watchlist" asp-controller="Profile" asp-action="addWish" asp-route-ip="@Model.Product.ProductId"><img src="~/Image/heart.png" /> Add to watch list</a>
+                }
+                    <div class="seller-profile">
+
+                        <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
+                        <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
+
+                    </div>
+
+
+
 
                 </div>
-
-
-
-
-            </div>
 
 
 

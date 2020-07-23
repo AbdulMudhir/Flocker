@@ -82,26 +82,3 @@ async function AjaxForm(event) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const submitButton = document.querySelector("form");
-
-submitButton.addEventListener("submit", AjaxForm )
-
-

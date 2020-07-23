@@ -1,23 +1,16 @@
 ﻿
-
-.main-container {
-    width: 100%;
-}
-
 .container {
-    margin: 0 auto;
     width: 100%;
-    max-width: 1440px;
     box-sizing: border-box;
     overflow-x:hidden;
 }
 
 .header {
-   
+    background: rgb(27,64,121);
 }
 
 
-    .header .container {
+    .header .half-container {
         height: 700px;
         display: grid;
         grid-template-columns: 60% 30%;
@@ -26,21 +19,27 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        background: rgb(27,64,121); 
-        z-index:1;
+        z-index: 1;
     }
-    .header .container::before {
+/*    .header .container::before {
         content: url(/Image/wave.png);
         position: absolute;
         z-index:-1;
         background-size:100% 100%;
-        width: 100%;
         bottom:0;
+        left:30%;
        
-    }
-    .heading-content {
-        justify-self: center;
-    }
+    }*/
+
+.half-container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.heading-content {
+    justify-self: center;
+    margin-left:-210px;
+}
 .heading {
     font-size: 96px;
     font-weight: 700;
@@ -101,6 +100,7 @@
 
     .spotlight > .container {
         padding: 5.5rem 7em;
+        padding-bottom:0;
 
     }
 
@@ -121,10 +121,7 @@
 }
 
 
-.card-container {
-    width: 100%;
-    position: relative;
-}
+
 .crown {
     position: absolute;
     top: 10px;
@@ -140,58 +137,13 @@
     text-decoration: none;
 }
 
-.card-img {
-    width: 100%;
-   
-    max-width: 100%;
-    object-fit: cover;
-}
 
 
-
-.spotlight .card-img {
-    width: 100%;
-    min-height:230px;
-    max-height: 230px;
-    max-width: 100%;
-    object-fit: cover;
-}
-
-
-
-
-.card-price {
-   
-    font-size: 16px;
-    margin-top:.5em;
-    color:black;
-   
-  
-}
-
-
-
-        .spotlight .card-price {
-          
-        }
-.card-title {
-    margin-top: .6em;
-    width: 100%;
-    color: #046af8;
-    font-weight:500;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    font-size: 1rem;
-}
-
-
-.new-content > .container{
+.new-content {
 }
 
 .new-content > .container {
     padding: 4em 7em;
-    padding-bottom: 4em;
 }
 
 .new-heading {

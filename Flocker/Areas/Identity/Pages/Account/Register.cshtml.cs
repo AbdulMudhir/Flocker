@@ -61,7 +61,6 @@ namespace Flocker.Areas.Identity.Pages.Account
             [Required(ErrorMessage ="The Username field is required.")]
             public string Username { get; set; }
 
-            [Required]
             [Display(Name ="Profile Picture")]
             public IFormFile AvatarFile { get; set; }
 
@@ -94,27 +93,42 @@ namespace Flocker.Areas.Identity.Pages.Account
 
                 var avatarFile = Input.AvatarFile;
 
-                // check image size is not greater than 8mb otherwise skip
-                if (avatarFile.Length / 1024 / 1024 >= 8)
+                var avatarUrl = "";
+
+                if (avatarFile != null)
                 {
 
-                    ModelState.AddModelError("Input.AvatarFile", "Image size is too large and has been removed max 8MB");
-                    return Page();
+                        // check image size is not greater than 8mb otherwise skip
+                        if (avatarFile.Length / 1024 / 1024 >= 8)
+                        {
+
+                            ModelState.AddModelError("Input.AvatarFile", "Image size is too large and has been removed max 8MB");
+                            return Page();
+                        }
+                            // get random filename and combine with the extension file camewith
+                            var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(avatarFile.FileName);
+                        var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
+                        var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+
+                        using (var stream = System.IO.File.Create(filePath))
+                        {
+                            avatarFile.CopyTo(stream);
+
+                        }
+
+                    avatarUrl = $"~/ProductImages/{uniqueFileName}";
+
+
                 }
-                    // get random filename and combine with the extension file camewith
-                    var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(avatarFile.FileName);
-                var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
-                var filePath = Path.Combine(uploadPath, uniqueFileName);
 
-
-                using (var stream = System.IO.File.Create(filePath))
+                else
                 {
-                    avatarFile.CopyTo(stream);
-
+                    avatarUrl = $"~/Image/user.svg";
                 }
 
-      
-                var user = new CustomUserIdentity { UserName = Input.Username, Email = Input.Email, Avatar = $"~/ProductImages/{uniqueFileName}"};
+
+                var user = new CustomUserIdentity { UserName = Input.Username, Email = Input.Email, Avatar = avatarUrl };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
 

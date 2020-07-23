@@ -11,7 +11,7 @@
 
     <section class="header">
 
-        <div class="container ">
+        <div class="half-container ">
 
             <div class="heading-content">
                 <h1 class="heading">BUY & Sell Fast</h1>
@@ -27,8 +27,8 @@
 
 
 
-
-
+    
+    <div class="half-container">
 
         <section class="spotlight">
 
@@ -46,18 +46,19 @@
                         <li class="card-container">
                             <a asp-controller="Product" asp-action="detail" asp-route-id="@item.ProductId" class="card">
                                 <img class="card-img" src="@Url.Content(item.Images[0].Image)" />
-                                <span class="iconify crown" data-inline="false" data-icon="ant-design:crown-filled" ></span>
+                                <span class="iconify crown" data-inline="false" data-icon="ant-design:crown-filled"></span>
 
                                 <div class="card-title">
                                     <h4>@item.Name.ToUpper()</h4>
 
-                                    @if(@item.Price.ToString() == "0.00" )
+                                    @if (@item.Price.ToString() == "0.00")
                                     {
-                                    <h5 class="card-price">Free</h5>
+                                        <h5 class="card-price">Free</h5>
                                     }
-                                    else{
+                                    else
+                                    {
 
-                                    <h5 class="card-price">£@item.Price</h5>
+                                        <h5 class="card-price">£@item.Price</h5>
                                     }
 
                                 </div>
@@ -139,5 +140,5 @@
         </section>
 
 
-
+    </div>
 

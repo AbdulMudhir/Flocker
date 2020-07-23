@@ -81,5 +81,12 @@ namespace Flocker.Models
             return _databaseContext.SaveChanges();
             ;
         }
+
+        public IEnumerable<Product> AllProductByCategorySortByPrice(int categoryId)
+        {
+            return _databaseContext.Products.Where(p => p.CategoryId == categoryId).Include(p => p.Images)
+                .OrderBy (p => p.Price).OrderBy(p => p.Price);
+        }
+
     }
 }

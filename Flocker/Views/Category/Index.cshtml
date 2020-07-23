@@ -1,7 +1,118 @@
-﻿
+﻿@model CategoryViewModel
 @{
     Layout = "~/Views/_Layout.cshtml";
 }
 
+    <link href="~/content/CategoryStylesheet.css" rel="stylesheet" />
 
-@await Component.InvokeAsync("CategoryNavigation") 
+<div class="categories-container">
+
+
+    <ul class="categories row justifiy-center align-center">
+
+        @foreach (var category in Model.categories)
+        {
+
+            if (Model.Category.CategoryId == category.CategoryId)
+            {
+                <li class="row justifiy-center align-center active-category"><a ><img src="@Url.Content(@category.Image)" />@category.Name</a></li>
+
+            }
+            else
+            {
+                <li class="row justifiy-center align-center"><a asp-controller="Category" asp-action="Index" asp-route-id="@category.CategoryId"><img src="@Url.Content(@category.Image)" />@category.Name</a></li>
+
+            }
+
+
+
+        }
+
+
+
+    </ul>
+
+
+</div>
+
+
+<div class="half-container category-item">
+
+    <ul class="breadcrumbs row ">
+
+        <li><a asp-controller="Home" asp-action="index" class="inactive-item"> Home<span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2"></span></a></li>
+        <li class="font-grey">
+            <a>
+                @Model.Category.Name
+            </a>
+        </li>
+
+
+        <div class="sortby-container">
+            <a class="sortby" id="@Model.Category.CategoryId">Sort By</a>
+
+            <ul class="options" >
+
+                <li><a class="choice">Highest Price</a></li>
+                <li><a class="choice">Lowest Price</a></li>
+
+
+            </ul>
+
+        </div>
+
+    </ul>
+
+   
+
+
+    <section class="new-content">
+
+
+
+
+        <ul class="grid-layout-4">
+
+            @foreach (var item in Model.products)
+            {
+
+                <li class="card-container ">
+                    <a asp-controller="Product" asp-action="detail" asp-route-id="@item.ProductId" class="card">
+                        <img class="card-img" src="@Url.Content(item.Images[0].Image)" />
+                        <div class="card-title">
+                            <h4>@item.Name.ToUpper()</h4>
+                            @if (@item.Price.ToString() == "0.00")
+                            {
+                                <h5 class="card-price">Free</h5>
+                            }
+                            else
+                            {
+
+                                <h5 class="card-price">£@item.Price</h5>
+                            }
+                        </div>
+                    </a>
+
+
+                </li>
+
+
+            }
+
+
+
+        </ul>
+
+
+
+
+
+
+
+
+    </section>
+
+
+
+</div>
+<script src="~/script/SortBy.js"></script>

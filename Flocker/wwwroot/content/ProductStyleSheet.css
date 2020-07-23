@@ -6,60 +6,25 @@
 }
 
 .product-page {
-    padding: 3rem 7em;
-    padding-bottom: 9rem;
-    background: #1B4079;
-    margin-bottom: 5em;
-    z-index: 0;
     position: relative;
+    background: #1b4079;
 }
-    .product-page::before {
-        content: url(/Image/wave.png);
-        position: absolute;
-        z-index: -1;
-        background-size: 100% 100%;
-        width: 100%;
-        bottom: 0;
-        left:0;
-    }
+    .product-page .half-container {
+        padding: 3rem 7em;
 
-.breadcrumbs li {
-    font-size: 16px;
-    box-sizing:border-box;
-    margin-right:1.2em;
-  
-}
-    .breadcrumbs li a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
     }
-        .breadcrumbs li a .arrow-right {
-            margin-left: 1.2em;
-            font-size: 1rem ;
-            color:white;
-        }
-    .active-item {
-        color:white;
-    }
+   
 
-.crumb-product-title {
-    color: #c3c3c3;
-    text-transform:lowercase;
-}
 
-.inactive-item {
-    color: white ;
-}
+
 
 .product {
+    padding:3em 3em;
     margin-top: 1em;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 1fr;
     grid-column-gap: 1em;
-    color: white
 }
 .product-img {
     background-color: #e5e5e5;
@@ -75,6 +40,7 @@
     .product-info{
         padding:.7em;
         display:grid;
+        color:white;
         grid-template-columns:1fr;
         grid-template-rows:repeat(5, auto);
         grid-auto-rows:auto;
@@ -97,7 +63,7 @@
         display:flex;
         justify-content:center;
         align-items:center;
-        color: white;
+        color: black;
         text-decoration:none;
         font-size: .7rem;
     }
@@ -147,7 +113,7 @@
     align-items: center;
     width: 178px;
     height: 40px;
-    color: white;
+    color:white;
     background: #0CA51C;
     border-radius: 3px;
     font-size: 1.2rem;
@@ -156,15 +122,15 @@
 .add-watchlist {
     grid-column: 1;
     width: 178px;
-    height: 25px;
+    height: 40px;
     background: #EAE5E5;
     border: 1px solid #C5C5C5;
     box-sizing: border-box;
     text-decoration: none;
     font-size: .8rem;
     display: flex;
-    margin-top:.6em;
-  
+    border-radius: 3px;
+    margin-top: .6em;
     justify-content: center;
     align-items: center;
 }
@@ -198,9 +164,8 @@
 }
 
 .comments {
-
-    color:white;
-    margin-top:1em;
+    color: black;
+    margin-top: 1em;
     width: 50%;
     min-width: 487px;
 }
@@ -243,6 +208,7 @@
 
     .add-container > .container {
         width:100%;
+        margin: 0  auto;
         max-width:700px;
         overflow:unset;
         position:relative;
@@ -418,13 +384,13 @@
     border-radius: 8px;
 }
 
-.field-validation-error {
+/*.field-validation-error {
     margin: 0em 0;
     color:red;
     display:block;
     width:100%;
     border: 1px solid black;
-}
+}*/
 
 .preview-container{
 }

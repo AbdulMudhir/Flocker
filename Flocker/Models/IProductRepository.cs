@@ -14,6 +14,9 @@ namespace Flocker.Models
         public IEnumerable<Product> AllProductByCategory(int categoryId);
 
 
+        public IEnumerable<Product> AllProductByCategorySortByPrice(int categoryId);
+ 
+
         public IEnumerable<Product> AllProductNotSold();
 
 

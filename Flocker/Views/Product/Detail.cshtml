@@ -13,22 +13,22 @@
 
 
 
-<div class="container">
+<div class="product-page">
 
-    <div class="product-page">
+    <div class="half-container">
 
 
 
 
         <ul class="breadcrumbs row ">
 
-            <li><a asp-controller="Home" asp-action="index" class="inactive-item"> Home<span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2"></span></a></li>
+            <li><a asp-controller="Home" asp-action="index" class="font-white"> Home<span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2"></span></a></li>
             <li>
-                <a asp-controller="Category" asp-action="category" class="inactive-item">
+                <a asp-controller="Category" asp-action="Index" asp-route-id="@Model.Product.CategoryId" class="font-white">
                     @Model.Product.Category.Name <span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2"></span>
                 </a>
             </li>
-            <li class="crumb-product-title">@Model.Product.Name</li>
+            <li class="crumb-product-title font-grey">@Model.Product.Name</li>
 
 
         </ul>
@@ -42,8 +42,8 @@
             </div>
 
 
-           
-        
+
+
 
             <div class="product-info">
 
@@ -90,37 +90,54 @@
                 </div>
 
 
-                @if (!Model.Product.Owner.UserName.Equals(User.Identity.Name))
+                @if (!Model.Product.Owner.UserName.Equals(User.Identity.Name) && User.Identity.IsAuthenticated)
                 {
                     <a asp-controller="Product" asp-action="offer" asp-route-id="@Model.Product.ProductId" class="make-offer">Make Offer</a>
 
                     <a class="add-watchlist" asp-controller="Profile" asp-action="addWish" asp-route-ip="@Model.Product.ProductId"><img src="~/Image/heart.png" /> Add to watch list</a>
                 }
-                    <div class="seller-profile">
+                <div class="seller-profile">
 
-                        <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
-                        <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
-
-                    </div>
-
-
-
+                    <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
+                    <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
 
                 </div>
 
 
 
 
+            </div>
+
+
+
+
         </section>
 
-        <section class="comments">
-            <h1>Comments</h1>
+
+    </div>
+
+</div>
+
+<div class="half-container">
+    
+    <section class="comments">
+        <h1>Comments</h1>
+        @if (User.Identity.IsAuthenticated)
+        {
             <div class="comment-section">
-                @*<img class="seller-img" src="@Url.Content(@Model.Product.Owner.Image)" />*@
+
+                <img class="seller-img" src="@Url.Content(UserManager.GetUserAsync(User).Result.Avatar)" />
+
                 <textarea type="text" class="comment-box"></textarea>
             </div>
             <div class="submit-section">    <a class="submit">Post comment</a></div>
+        }
+        else { 
+        <div class="comment-section">
 
-        </section>
-    </div>
+            <h1>Login to post a comment</h1>
+
+        </div>}
+
+    </section>
 </div>

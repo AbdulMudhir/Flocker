@@ -1,0 +1,33 @@
+﻿body {
+}
+
+
+.form-template {
+
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 6em 3em;
+    background-color: #fffcfc;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin-top:4em;
+
+}
+
+#login-form label, .field-validation-error {
+
+}
+
+#login-form input {
+    margin-bottom: 1.5em;
+}
+
+.forget-password{
+    padding-top:0;
+    padding-bottom:0;
+    margin-bottom:0;
+}
+
+.forget-password p{
+    margin-bottom:.5em;
+}

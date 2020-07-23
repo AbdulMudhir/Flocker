@@ -4,8 +4,6 @@
 
 .register-container {
     width: 100%;
-    height: 100%;
-    background-color: #f5f5f5;
     padding-top: 4em;
     padding-bottom: 4em;
 }
@@ -62,17 +60,7 @@
     margin-bottom:1em;
 }
 
-.field-validation-error {
-    font-size: 14px;
-    background-color: #c61111;
-    color: white;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 4px;
-    padding: 8px;
-    margin-top: .8em;
-    margin-bottom:.8em;
-}
+
 .register-button {
     background-color: #0CA51C;
     border:none;

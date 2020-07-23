@@ -66,6 +66,7 @@ nav {
 
 .searchbox-container {
     position: relative;
+    width: 60%;
 }
 
 #searchbox {
@@ -89,7 +90,29 @@ nav {
     font-size: 1.2rem;
 }
 
+.username{
+    color:white;
+    max-width:260px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
 
+.LoginNavigation{
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+}
+.login, .register, .logout {
+    max-height: 36px;
+    margin-left:.5em;
+    color:white;
+    background-color: transparent;
+    padding: .5em .6em;
+    text-decoration: none;
+    border-radius: 2px;
+    border:none;
+}
 
 
 .categories-container {

@@ -435,6 +435,8 @@ namespace Flocker.Controllers
 
             var product = _productRepository.GetProductById(offer.ProductId);
 
+            if (ModelState.IsValid) { 
+
             if(product != null)
             {
 
@@ -480,6 +482,7 @@ namespace Flocker.Controllers
 
                 return Json(new { success = "false", message = "Product has already been sold" });
 
+            }
             }
 
             return NotFound();

@@ -86,9 +86,10 @@
 }
 
 
-.mp{
-    background:#bbbaba;
-    color:white;
+.mp {
+    background: #bbbaba;
+    color: white;
+    pointer-events: none;
 }
 
 .yes-button{

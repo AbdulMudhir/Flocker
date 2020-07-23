@@ -15,5 +15,7 @@ namespace Flocker.Models
         public string UserId { get; set; }
         public CustomUserIdentity User { get; set; }
 
+        public bool isApproved { get; set; }
+
     }
 }

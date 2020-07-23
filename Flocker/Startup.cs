@@ -33,6 +33,7 @@ namespace Flocker
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IOfferRepository, OfferRepository>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllersWithViews().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
             services.AddDefaultIdentity<CustomUserIdentity>().AddEntityFrameworkStores<DatabaseContext>();

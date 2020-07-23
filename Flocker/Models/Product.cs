@@ -48,6 +48,7 @@ namespace Flocker.Models
         public CustomUserIdentity Owner { get; set; }
 
 
+        public Collection<Offer> Offers { get; set; }
         public Collection<Comment> Comments { get; set; }
 
         public bool Spotlight { get; set; }

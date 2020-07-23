@@ -22,9 +22,9 @@
 
         <ul class="breadcrumbs row ">
 
-            <li><a asp-controller="Home" asp-action="index" class="font-white"> Home<span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2"></span></a></li>
+            <li><a asp-controller="Home" asp-action="index" class=""> Home<span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2"></span></a></li>
             <li>
-                <a asp-controller="Category" asp-action="Index" asp-route-id="@Model.Product.CategoryId" class="font-white">
+                <a asp-controller="Category" asp-action="Index" asp-route-id="@Model.Product.CategoryId" class="">
                     @Model.Product.Category.Name <span class="iconify arrow-right" data-inline="false" data-icon="dashicons:arrow-right-alt2"></span>
                 </a>
             </li>
@@ -70,23 +70,27 @@
                     <h1>@Model.Product.Name</h1>
                 </div>
 
-                <div class="product-description">
-                    <h4>Description</h4>
-                    <h5>@Model.Product.Description</h5>
-
-                </div>
+                
 
                 <div class="product-price">
 
-                    @if (@Model.Product.Price.ToString() == "0.00")
-                    {
-                        <h1>Free</h1>
-                    }
+
+                    @if (Model.Product.Sold)
+                    {<h1>SOLD</h1>}
                     else
                     {
-                        <h1>£@Model.Product.Price</h1>
+                        @if (@Model.Product.Price.ToString() == "0.00")
+                        {
+                            <h1>Free</h1>
+                        }
+                        else
+                        {
+                            <h1>£@Model.Product.Price</h1>
 
+                        }
                     }
+
+
                 </div>
 
 
@@ -118,8 +122,12 @@
 
 </div>
 
-<div class="half-container">
-    
+<div class="half-container bottom-container row " >
+    <div class="product-description">
+        <h4>Description</h4>
+        <h5>@Model.Product.Description</h5>
+
+    </div>
     <section class="comments">
         <h1>Comments</h1>
         @if (User.Identity.IsAuthenticated)
@@ -132,12 +140,15 @@
             </div>
             <div class="submit-section">    <a class="submit">Post comment</a></div>
         }
-        else { 
-        <div class="comment-section">
+        else
+        {
+            <div class="comment-section">
 
-            <h1>Login to post a comment</h1>
+                <h1>Login to post a comment</h1>
 
-        </div>}
+            </div>}
 
     </section>
+
+
 </div>

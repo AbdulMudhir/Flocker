@@ -15,8 +15,15 @@ namespace Flocker.Models
 
         public Offer GetOfferByOfferId(int offerId);
 
+
+        public IEnumerable<Offer> AllOfferForProduct(int productId);
         public void AddOffer(Offer offer);
 
         public void DeleteOffer(Offer offer);
+
+        public void UpdateOffer(Offer offer, OfferUpdateModel offerUpdate);
+
+        public void AcceptOffer(Offer offer, OfferUpdateModel offerUpdate);
+        public void DeclineOffer(Offer offer, OfferUpdateModel offerUpdate);
     }
 }

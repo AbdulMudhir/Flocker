@@ -15,7 +15,7 @@
 
 <div class="table  ">
     <div class="table-title row align-center">
-        <h4 class="userColumn">User</h4>
+        <h4 class="userColumn">Seller</h4>
         <h4 class="priceColumn">Price</h4>
         <h4  class="productColumn">Product Name</h4>
         <h4 class="statusColumn">Status</h4>
@@ -25,7 +25,7 @@
     {
 
 <div class="cell row align-center">
-    <a class="userColumn">@item.User.UserName</a>
+    <a class="userColumn">@item.Product.Owner.UserName</a>
     <a class="priceColumn">£@item.Price</a>
     <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId" class="productColumn row  align-center">@item.Product.Name </a>
 

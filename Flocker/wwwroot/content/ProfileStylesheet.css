@@ -50,6 +50,7 @@
     overflow-x:hidden;
     text-overflow:ellipsis;
     text-decoration:none;
+    box-sizing:border-box;
 }
     .product-name:hover, .category:hover {
         background: #e4e1e1
@@ -83,7 +84,8 @@
 .sold {
     background: #14C525;
     color: white;
-    padding: .81em 3.5em;
+    width:100%;
+    box-sizing:border-box;
 }
 
 

@@ -1,0 +1,55 @@
+﻿
+@model ProfileOfferViewModel
+
+@{
+    ViewData["Title"] = "Offer";
+    Layout = "~/Views/_ProfileLayout.cshtml";
+}
+
+
+
+<link href="~/content/OfferStylesheet.css" rel="stylesheet" />
+
+
+<h1 class="profile-table-title">Offers</h1>
+
+<div class="table  ">
+    <div class="table-title row align-center">
+        <h4 class="userColumn">Buyer</h4>
+        <h4 class="priceColumn">Price</h4>
+        <h4 class="productColumn">Product Name</h4>
+        <h4 class="statusColumn">Status</h4>
+    </div>
+
+    @foreach (var item in Model.Offers)
+    {
+
+        <div class="cell row align-center">
+            <a class="userColumn">@item.User</a>
+            <a class="priceColumn">£@item.Price</a>
+            <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId" class="productColumn row  align-center">@item.Product.Name </a>
+
+            <div class="statusColumn row justifiy-center align-center">
+
+                    <input type="hidden" name="OfferId" value="@item.OfferId"/>
+                    <input type="hidden" name="ProductId" value="@item.ProductId" />
+
+
+                    <a class="approve row justifiy-center align-center ">Approve</a>
+                    <a class="decline row justifiy-center align-center ">Decline</a>
+      
+           
+
+            </div>
+
+        </div>
+
+    }
+
+
+
+
+
+
+</div>
+<script src="~/script/approveanddeclinescript.js"></script>

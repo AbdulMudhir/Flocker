@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Flocker.Migrations;
 
 namespace Flocker.Controllers
 {
@@ -35,7 +36,14 @@ namespace Flocker.Controllers
         public IActionResult Offer()
         {
 
-            return View();
+            var currentUserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ProfileOfferViewModel profileOfferViewModel = new ProfileOfferViewModel()
+            {
+                Offers = _offerRepository.AllBuyerOffersByOwnerId(currentUserID)
+
+        };
+
+            return View(profileOfferViewModel);
         }
 
         public IActionResult MyOffer()
@@ -79,6 +87,56 @@ namespace Flocker.Controllers
             return Json(new { success = "false" }); ;
 
         }
+
+
+        [HttpPost]
+        public IActionResult ApproveOrDeclineOffer([FromBody] OfferUpdateModel offerReceived)
+        {
+
+            var offer = _offerRepository.GetOfferByOfferId(offerReceived.OfferId);
+
+            var product = _productRepository.GetProductById(offerReceived.ProductId);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+
+
+            if (offer != null && product != null)
+            {
+
+                if (product.OwnerId.Equals(userId))
+                {
+
+
+                    if(offerReceived.Message.Equals("Approve"))
+                    {
+
+                        _offerRepository.AcceptOffer(offer, offerReceived);
+
+                        return Json(new { success = "true" });
+                    }
+                    else if (offerReceived.Message.Equals("Decline"))
+                    {
+                        _offerRepository.DeclineOffer(offer, offerReceived);
+
+                        return Json(new { success = "true" });
+                    }
+             
+
+
+
+                    return Json(new { success = "false" });
+                }
+
+            }
+
+
+            return Json(new { success = "false" }); ;
+
+        }
+
+
 
     }
 }

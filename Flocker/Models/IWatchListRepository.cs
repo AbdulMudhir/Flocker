@@ -9,5 +9,11 @@ namespace Flocker.Models
     {
 
         public IEnumerable<WatchList> GetWatchListsByUserId(string userId);
+
+        public WatchList GetWatchListForUserForProduct(string userID, int ProductId);
+
+        public void RemoveWatchlist(WatchList watchList);
+
+        public void AddWatchlist(WatchList watchList);
     }
 }

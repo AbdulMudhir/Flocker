@@ -127,7 +127,7 @@
                         {
                             <a asp-controller="profile" asp-action="MyOffer" class="offer-pending">Offer Pending</a>
                         }
-                        <a class="add-watchlist" asp-controller="Profile" asp-action="addWish" asp-route-ip="@Model.Product.ProductId"><img src="~/Image/heart.png" /> Add to watch list</a>
+                        <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Add to watch list</a>
                     }
                 }
                 <div class="seller-profile">
@@ -167,8 +167,6 @@
                 <h5>@Model.Product.Description</h5>
 
             </div>
-        
-           
 
 
 
@@ -176,27 +174,29 @@
 
 
 
-                    <section class="comments">
-                        <h1>Comments</h1>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <div class="comment-section">
 
-                                <img class="seller-img" src="@Url.Content(UserManager.GetUserAsync(User).Result.Avatar)" />
 
-                                <textarea type="text" class="comment-box"></textarea>
-                            </div>
-                            <div class="submit-section">    <a class="submit">Post comment</a></div>
-                        }
-                        else
-                        {
-                            <div class="comment-section">
+            <section class="comments">
+                <h1>Comments</h1>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="comment-section">
 
-                                <h1>Login to post a comment</h1>
+                        <img class="seller-img" src="@Url.Content(UserManager.GetUserAsync(User).Result.Avatar)" />
 
-                            </div>}
+                        <textarea type="text" class="comment-box"></textarea>
+                    </div>
+                    <div class="submit-section">    <a class="submit">Post comment</a></div>
+                }
+                else
+                {
+                    <div class="comment-section">
 
-                    </section>
+                        <h1>Login to post a comment</h1>
+
+                    </div>}
+
+            </section>
 
 
 
@@ -208,10 +208,11 @@
         </section>
 
 
-</div>
+    </div>
 
 </div>
 
 
 
 <script src="~/script/ProductDetailScripts.js"></script>
+<script src="~/script/watchlistscript.js"></script>

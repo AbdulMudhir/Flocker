@@ -26,7 +26,7 @@
 
         <div class="cell row align-center">
             <a class="userColumn">@item.User</a>
-            <a class="priceColumn">£@item.Price</a>
+            <a class="priceColumn hoverGrey">£@item.Price</a>
             <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId" class="productColumn row  align-center">@item.Product.Name </a>
 
             <div class="statusColumn row justifiy-center align-center">

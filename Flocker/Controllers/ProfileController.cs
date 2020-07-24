@@ -15,12 +15,15 @@ namespace Flocker.Controllers
     {
         private IProductRepository _productRepository;
         private IOfferRepository _offerRepository;
+        private IWatchListRepository _watchListRepository;
 
 
-        public ProfileController(IProductRepository productRepository, IOfferRepository offerRepository)
+        public ProfileController(IProductRepository productRepository, 
+            IOfferRepository offerRepository, IWatchListRepository watchListRepository)
         {
             _productRepository = productRepository;
             _offerRepository = offerRepository;
+            _watchListRepository = watchListRepository;
         }
 
         public IActionResult Index()
@@ -59,6 +62,50 @@ namespace Flocker.Controllers
 
             return View(profileOfferViewModel);
         }
+       
+
+        public IActionResult WatchList()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            WatchListViewModel watchListViewModel = new WatchListViewModel
+            {
+                WatchLists = _watchListRepository.GetWatchListsByUserId(userId)
+            };
+
+            return View(watchListViewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult WatchList([FromBody]WatchlistPostModel watchlistPostModel)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var watchList = _watchListRepository.GetWatchListForUserForProduct(userId, watchlistPostModel.ProductId);
+
+            if(watchList == null)
+            {
+                WatchList newWatchlist = new WatchList()
+                {
+                    ProductId = watchlistPostModel.ProductId,
+                    UserID = userId,
+                };
+
+                _watchListRepository.AddWatchlist(newWatchlist);
+
+                return Json(new { success = "true" });
+            }
+
+            else if (watchList.UserID.Equals(userId))
+            {
+                _watchListRepository.RemoveWatchlist(watchList);
+
+                return Json(new { success = "true" });
+            }
+
+
+            return Json(new { success="false"});
+        }
+
 
 
         [HttpPost]

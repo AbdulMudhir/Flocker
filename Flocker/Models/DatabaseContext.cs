@@ -24,6 +24,8 @@ namespace Flocker.Models
 
         public DbSet<Offer> Offers { get; set; }
 
+        public DbSet<Sold> Sold { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

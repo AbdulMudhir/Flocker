@@ -19,28 +19,33 @@ namespace Flocker.Models
             _databaseContext = databaseContext;
         }
 
-        public IEnumerable<Product> AllProduct => _databaseContext.Products.Where(p => !p.Sold).Include(p => p.Category).Include(p => p.Owner).Include(p => p.Images);
+        public IEnumerable<Product> AllProduct => _databaseContext.Products.Where(p => !p.Sold.IsSold).Include(p => p.Category).Include(p => p.Owner).Include(p => p.Images);
 
-        public IEnumerable<Product> AllProductOnSpotlight => _databaseContext.Products.Where(p => p.Spotlight && !p.Sold).Include(p => p.Images);
+        public IEnumerable<Product> AllProductOnSpotlight => _databaseContext.Products.Where(p => p.Spotlight && !p.Sold.IsSold).Include(p => p.Images);
 
         public IEnumerable<Product> AllProductByCategory(int categoryId)
         {
-            return _databaseContext.Products.Where(p => p.CategoryId == categoryId && !p.Sold).Include(p => p.Images);
+            return _databaseContext.Products.Where(p => p.CategoryId == categoryId && !p.Sold.IsSold).Include(p => p.Images);
         }
 
         public IEnumerable<Product> AllProductByUserId(string ownerId)
         {
-            return _databaseContext.Products.Where(p => p.OwnerId.Equals(ownerId)).Include(p => p.Images).Include(p=>p.Category);
+            return _databaseContext.Products.Where(p => p.OwnerId.Equals(ownerId))
+                .Include(p => p.Sold)
+                .Include(p => p.Images).Include(p=>p.Category);
         }
 
         public IEnumerable<Product> AllProductNotSold()
         {
-            return _databaseContext.Products.Where(p => !p.Sold).Include(p => p.Category).Include(p => p.Owner).Include(p => p.Images);
+            return _databaseContext.Products.Where(p => !p.Sold.IsSold).Include(p => p.Category).Include(p => p.Owner).Include(p => p.Images);
         }
 
         public Product GetProductById(int productId)
         {
-            return _databaseContext.Products.Include(p => p.Images).Include(p => p.Owner).Include(p => p.Comments).ThenInclude(c => c.User).FirstOrDefault(p => p.ProductId == productId);
+            return _databaseContext.Products.Include(p => p.Images)
+                .Include(p => p.Owner).Include(p => p.Comments).ThenInclude(c => c.User)
+                .Include(p=>p.Sold)
+                .FirstOrDefault(p => p.ProductId == productId);
         }
 
 

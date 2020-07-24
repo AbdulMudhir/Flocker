@@ -39,6 +39,10 @@
     <Compile Remove="Migrations\20200722182858_comment.Designer.cs" />
     <Compile Remove="Migrations\20200722183417_test.cs" />
     <Compile Remove="Migrations\20200722183417_test.Designer.cs" />
+    <Compile Remove="Migrations\20200724093507_soldtable.cs" />
+    <Compile Remove="Migrations\20200724093507_soldtable.Designer.cs" />
+    <Compile Remove="Migrations\20200724094251_setdefaultvalueforsold.cs" />
+    <Compile Remove="Migrations\20200724094251_setdefaultvalueforsold.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

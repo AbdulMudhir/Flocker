@@ -4,14 +4,16 @@ using Flocker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Flocker.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200724094702_onetoonerelationshipforsold")]
+    partial class onetoonerelationshipforsold
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,6 +218,12 @@ namespace Flocker.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("SoldId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SoldId1")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Spotlight")
                         .HasColumnType("bit");
 
@@ -224,6 +232,8 @@ namespace Flocker.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("OwnerId");
+
+                    b.HasIndex("SoldId1");
 
                     b.ToTable("Products");
                 });
@@ -271,9 +281,6 @@ namespace Flocker.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("SoldId");
-
-                    b.HasIndex("ProductId")
-                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -452,6 +459,10 @@ namespace Flocker.Migrations
                     b.HasOne("Flocker.Models.CustomUserIdentity", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId");
+
+                    b.HasOne("Flocker.Models.Sold", "Sold")
+                        .WithMany()
+                        .HasForeignKey("SoldId1");
                 });
 
             modelBuilder.Entity("Flocker.Models.ProductImage", b =>
@@ -465,12 +476,6 @@ namespace Flocker.Migrations
 
             modelBuilder.Entity("Flocker.Models.Sold", b =>
                 {
-                    b.HasOne("Flocker.Models.Product", null)
-                        .WithOne("Sold")
-                        .HasForeignKey("Flocker.Models.Sold", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Flocker.Models.CustomUserIdentity", "User")
                         .WithMany()
                         .HasForeignKey("UserId");

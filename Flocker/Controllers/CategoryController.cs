@@ -38,7 +38,7 @@ namespace Flocker.Controllers
         public JsonResult SortBy([FromBody] int CategoryId)
         {
 
-            if(CategoryId != null)
+            if(CategoryId != 0)
             {
 
                 return Json(new

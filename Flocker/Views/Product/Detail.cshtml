@@ -97,7 +97,7 @@
                 <div class="product-price">
 
 
-                    @if (Model.Product.Sold)
+                    @if (Model.Product.Sold.IsSold)
                     {<h1>SOLD</h1>}
                     else
                     {
@@ -115,7 +115,7 @@
 
                 </div>
 
-                @if (!Model.Product.Sold)
+                @if (!Model.Product.Sold.IsSold)
                 {
                     @if (!Model.Product.Owner.UserName.Equals(User.Identity.Name) && User.Identity.IsAuthenticated)
                     {
@@ -125,7 +125,7 @@
                         }
                         else
                         {
-                            <a class="offer-pending">Offer Pending</a>
+                            <a asp-controller="profile" asp-action="MyOffer" class="offer-pending">Offer Pending</a>
                         }
                         <a class="add-watchlist" asp-controller="Profile" asp-action="addWish" asp-route-ip="@Model.Product.ProductId"><img src="~/Image/heart.png" /> Add to watch list</a>
                     }
@@ -167,7 +167,7 @@
                 <h5>@Model.Product.Description</h5>
 
             </div>
-            <section
+        
            
 
 

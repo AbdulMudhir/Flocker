@@ -30,8 +30,7 @@ namespace Flocker.Models
         public string Description { get; set; }
 
 
-
-        public bool Sold { get; set; }
+        public Sold Sold { get; set; }
 
        
         public DateTime DatePosted { get; set; }

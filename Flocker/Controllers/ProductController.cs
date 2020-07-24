@@ -139,7 +139,9 @@ namespace Flocker.Controllers
                         Description = productForm.Description,
                         CategoryId = int.Parse(productForm.Category),
                         DatePosted = DateTime.Now.Date,
-                        OwnerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                        OwnerId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                        Sold = new Sold { },
+                       
 
                                            };
 
@@ -204,8 +206,7 @@ namespace Flocker.Controllers
 
 
 
-                return NotFound();
-        
+            
 
 
 
@@ -440,7 +441,7 @@ namespace Flocker.Controllers
             if(product != null)
             {
 
-                if(!product.Sold)
+                if(!product.Sold.IsSold)
                 {
 
                 

@@ -39,6 +39,7 @@ offerForm.addEventListener("submit", function (event) {
                     var pendingButton = document.createElement("a");
                     pendingButton.setAttribute("class", "offer-pending");
                     pendingButton.textContent = "Offer Pending"
+                    pendingButton.setAttribute("href", "/profile/MyOffer");
                     offerContainer.remove();
 
                     const mainContainer = document.querySelector(".product-info");

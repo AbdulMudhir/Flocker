@@ -1,8 +1,70 @@
 ﻿
+@model IEnumerable<Offer>
+
 @{
     ViewData["Title"] = "MyOffer";
     Layout = "~/Views/_ProfileLayout.cshtml";
 }
 
 
-    <link href="~/content/MyOffer.css" rel="stylesheet" />
+<link href="~/content/MyOffer.css" rel="stylesheet" />
+
+
+
+<h1 class="profile-table-title">My Offer</h1>
+
+<div class="table  ">
+    <div class="table-title row align-center">
+        <h4 class="userColumn">User</h4>
+        <h4 class="priceColumn">Price</h4>
+        <h4  class="productColumn">ProductName</h4>
+        <h4 class="statusColumn">Status</h4>
+    </div>
+
+    @foreach (var item in Model)
+    {
+
+<div class="cell row align-center">
+    <a class="userColumn">@item.User.UserName</a>
+    <a class="priceColumn">@item.Price</a>
+    <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId" class="productColumn row  align-center">@item.Product.Name </a>
+
+    <div class="options row ">
+
+
+        @if (item.isApproved && !item.UserId.Equals(UserManager.GetUserAsync(User).Result.Id))
+        {
+            <a class="sold row justifiy-center align-center statusColumn">Product Already Sold To Another User</a>
+        }
+        else if (item.isPending)
+        {
+
+            <a class="pending row justifiy-center align-center delete-product-button">Pending</a>
+            <a class="delete row justifiy-center align-center delete-product-button">Delete</a>
+
+        }
+        else
+        {
+            <div class="confirmation-box" id="@item.ProductId">
+
+                <h1>Are you sure you want to delete</h1>
+                <a class="yes-button">Yes</a>
+                <a class="no-button">No</a>
+
+
+            </div>
+            <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.ProductId" class="edit row justifiy-center align-center">Edit</a>
+        }
+
+    </div>
+
+</div>
+
+    }
+
+
+
+
+
+
+</div>

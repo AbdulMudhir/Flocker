@@ -12,10 +12,13 @@ namespace Flocker.Controllers
     public class ProfileController: Controller
     {
         private IProductRepository _productRepository;
+        private IOfferRepository _offerRepository;
 
-        public ProfileController(IProductRepository productRepository)
+
+        public ProfileController(IProductRepository productRepository, IOfferRepository offerRepository)
         {
             _productRepository = productRepository;
+            _offerRepository = offerRepository;
         }
 
         public IActionResult Index()
@@ -36,7 +39,11 @@ namespace Flocker.Controllers
 
         public IActionResult MyOffer()
         {
-            return View();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+           var offers =  _offerRepository.AllOffersByUserId(userId);
+
+
+            return View(offers);
         }
     }
 }

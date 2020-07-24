@@ -60,7 +60,7 @@
     position: relative;
 }
 .delete, .edit{
-    width:88px;
+    width:55%;
     height:42px;
 
 }
@@ -78,6 +78,7 @@
     color: white;
     padding: .8em;
     box-sizing: border-box;
+    margin-right:-.1em;
 }
 .sold {
     background: #14C525;

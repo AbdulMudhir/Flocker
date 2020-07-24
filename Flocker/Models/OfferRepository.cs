@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace Flocker.Models
 
         public IEnumerable<Offer> AllOffersByUserId(string userid)
         {
-            return _databaseContext.Offers.Where(o => o.UserId.Equals( userid));
+            return _databaseContext.Offers.Where(o => o.UserId.Equals(userid)).Include(o => o.User).Include(o => o.Product);
         }
 
         public Offer GetOfferForProductByUser(int productID, string userId)

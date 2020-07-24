@@ -1,8 +1,7 @@
 ﻿
 .profile-container {
     width: 100%;
-    background: #1B4079;
-    height: 100%;
+
     overflow-y: hidden;
 }
 
@@ -11,3 +10,6 @@
         max-width: 960px;
         padding: 4em 6em;
     }
+body {
+    background: #1B4079;
+}

@@ -29,11 +29,17 @@ function addOrRemoveWishList(event) {
 
                 if (this.response.success === "true") {
 
-                    if (requestText === "Add to watch list") {
-                        event.target.textContent = "Remove watch list";
+                    console.log(requestText)
+
+                    if (requestText === "Add to watchlist") {
+
+
+                        event.target.innerHTML = `<img src="/Image/heart.png">Remove watchlist`;
+                        //event.target.textContent = "Remove watchlist"
                     }
                     else {
-                        event.target.textContent = "Add to watch list";
+                        event.target.innerHTML = `<img src="/Image/heart.png">Add to watchlist`;
+                     
                     }
                 }
 

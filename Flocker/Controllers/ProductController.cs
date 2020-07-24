@@ -24,13 +24,18 @@ namespace Flocker.Controllers
 
         private IOfferRepository _offerRepository;
 
-        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IWebHostEnvironment environment, IOfferRepository offerRepository)
+        private IWatchListRepository _watchListRepository;
+
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IWebHostEnvironment environment, IOfferRepository offerRepository,
+            IWatchListRepository watchListRepository
+            )
         {
             _productRepository = productRepository;
 
             _categoryRepository = categoryRepository;
 
             _offerRepository = offerRepository;
+            _watchListRepository = watchListRepository;
 
             _hostingEnvironment = environment;
         }
@@ -68,6 +73,8 @@ namespace Flocker.Controllers
 
             var offer =  _offerRepository.GetOfferForProductByUser(product.ProductId, userId);
 
+                var watchlist = _watchListRepository.GetWatchListForUserForProduct(userId, product.ProductId);
+
             if (offer != null)
                 {
                    
@@ -83,6 +90,16 @@ namespace Flocker.Controllers
                 {
                     productView.HasOffer = false;
 
+                }
+
+
+            if (watchlist != null)
+                {
+                    productView.HasWatchlist = true;
+                }
+                else
+                {
+                    productView.HasWatchlist = false;
                 }
 
 

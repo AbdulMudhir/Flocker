@@ -14,5 +14,7 @@ namespace Flocker.Models
 
         public bool HasOffer { get; set; }
 
+        public bool HasWatchlist { get; set; }
+
     }
 }

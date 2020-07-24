@@ -58,7 +58,7 @@
 
                         <h1>Offer Price</h1>
 
-                        <input name="Price" type="number" min="1" step="any" required />
+                        <input name="Price" type="number" min="1" max="2147483647" step="any" required />
                         <h6 class="field-validation-error">Test</h6>
 
                         <button type="submit">Send Offer</button>
@@ -127,7 +127,17 @@
                         {
                             <a asp-controller="profile" asp-action="MyOffer" class="offer-pending">Offer Pending</a>
                         }
-                        <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Add to watch list</a>
+
+                        @if (!Model.HasWatchlist)
+                        {
+
+                            <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Add to watchlist</a>
+                        }
+
+                        else
+                        {
+                            <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Remove watchlist</a>
+                        }
                     }
                 }
                 <div class="seller-profile">

@@ -13,6 +13,10 @@ namespace Flocker.Models
 
         public Offer GetOfferForProductByUser(int productID, string userId);
 
+        public Offer GetOfferByOfferId(int offerId);
+
         public void AddOffer(Offer offer);
+
+        public void DeleteOffer(Offer offer);
     }
 }

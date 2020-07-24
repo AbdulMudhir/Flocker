@@ -19,6 +19,7 @@ namespace Flocker.Models
         public DateTime DatePosted { get; set; }
 
 
+
         public bool isPending { get; set; }
         public string UserId { get; set; }
         public CustomUserIdentity User { get; set; }

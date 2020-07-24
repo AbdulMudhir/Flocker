@@ -32,13 +32,28 @@ namespace Flocker.Models
 
         public IEnumerable<Offer> AllOffersByUserId(string userid)
         {
-            return _databaseContext.Offers.Where(o => o.UserId.Equals(userid)).Include(o => o.User).Include(o => o.Product);
+            return _databaseContext.Offers.Where(o => o.UserId.Equals(userid)).Include(o => o.User).Include(o => o.Product).ThenInclude(p=>p.Sold);
         }
+
+        public void DeleteOffer(Offer offer)
+        {
+            _databaseContext.Offers.Remove(offer);
+
+            _databaseContext.SaveChanges();
+        }
+
+        public Offer GetOfferByOfferId(int   offerId)
+        {
+            return _databaseContext.Offers.FirstOrDefault(o => o.OfferId == offerId );
+
+        }
+
+
 
         public Offer GetOfferForProductByUser(int productID, string userId)
         {
 
-            return _databaseContext.Offers.OrderBy(o => o.DatePosted).FirstOrDefault(o => o.UserId == userId && o.ProductId == productID);
+            return _databaseContext.Offers.OrderByDescending(o => o.DatePosted).FirstOrDefault(o => o.UserId == userId && o.ProductId == productID);
         }
     }
 }

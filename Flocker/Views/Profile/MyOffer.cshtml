@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<Offer>
+@model ProfileOfferViewModel
 
 @{
     ViewData["Title"] = "MyOffer";
@@ -17,43 +17,51 @@
     <div class="table-title row align-center">
         <h4 class="userColumn">User</h4>
         <h4 class="priceColumn">Price</h4>
-        <h4  class="productColumn">ProductName</h4>
+        <h4  class="productColumn">Product Name</h4>
         <h4 class="statusColumn">Status</h4>
     </div>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Offers)
     {
 
 <div class="cell row align-center">
     <a class="userColumn">@item.User.UserName</a>
-    <a class="priceColumn">@item.Price</a>
+    <a class="priceColumn">£@item.Price</a>
     <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId" class="productColumn row  align-center">@item.Product.Name </a>
 
-    <div class="options row ">
+    <div class="statusColumn row justifiy-center align-center">
 
 
-        @if (item.isApproved && !item.UserId.Equals(UserManager.GetUserAsync(User).Result.Id))
+        @if (!item.isApproved && item.Product.Sold.IsSold)
         {
-            <a class="sold row justifiy-center align-center statusColumn">Product Already Sold To Another User</a>
+
+            <a class="sold row justifiy-center align-center">Already Sold</a>
         }
         else if (item.isPending)
         {
 
-            <a class="pending row justifiy-center align-center delete-product-button">Pending</a>
-            <a class="delete row justifiy-center align-center delete-product-button">Delete</a>
+            <a class="pending row justifiy-center align-center ">Pending</a>
+            <a class="delete row justifiy-center align-center ">Delete</a>
+            <div class="confirmation-box">
 
-        }
-        else
-        {
-            <div class="confirmation-box" id="@item.ProductId">
+                <input type="hidden" name="OfferId" value="@item.OfferId" />
+                <input type="hidden" name="ProductId" value="@item.ProductId" />
 
                 <h1>Are you sure you want to delete</h1>
-                <a class="yes-button">Yes</a>
-                <a class="no-button">No</a>
+                <a class="yes-button" style="cursor:pointer">Yes</a>
+                <a class="no-button" style="cursor:pointer">No</a>
 
 
             </div>
-            <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.ProductId" class="edit row justifiy-center align-center">Edit</a>
+        }
+        else if (!item.isApproved && !item.isPending)
+        {
+            <a class="reject row justifiy-center align-center">Rejected</a>
+        }
+        else
+        {
+
+            <a class="sold row justifiy-center align-center">You Bought</a>
         }
 
     </div>
@@ -68,3 +76,5 @@
 
 
 </div>
+
+<script src="~/script/OfferScript.js"></script>

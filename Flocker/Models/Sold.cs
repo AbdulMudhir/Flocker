@@ -16,11 +16,10 @@ namespace Flocker.Models
         [DefaultValue(false)]
         public bool IsSold { get; set; } = false;
 
-        public string UserId { get; set; }
 
-        public CustomUserIdentity User { get; set; }
 
-        public Decimal Price { get; set; }
+        public Offer Offer { get; set; }
+
 
         public DateTime DateSold { get; set; }
     }

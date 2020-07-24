@@ -469,7 +469,9 @@ namespace Flocker.Controllers
             else if(!checkOfferAlreadyExist.isApproved && !checkOfferAlreadyExist.isPending )
             {
                         offer.UserId = userId;
-                        _offerRepository.AddOffer(offer);
+                            offer.DatePosted = DateTime.Now.Date;
+                            offer.isPending = true;
+                            _offerRepository.AddOffer(offer);
                         return Json(new { success = "true", message = "Offer has been sent" });
             }
 

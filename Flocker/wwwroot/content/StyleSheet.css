@@ -39,12 +39,12 @@ footer {
             font-size: 1rem;
         }
 
+  
 
 
-
-        .card{
-            text-decoration:none;
-        }
+    .card {
+        text-decoration: none;
+    }
         .card:hover{
             text-decoration:underline;
         }

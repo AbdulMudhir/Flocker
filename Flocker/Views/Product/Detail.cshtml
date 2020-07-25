@@ -10,12 +10,13 @@
 
 
 @await Component.InvokeAsync("CategoryNavigation")
+<link href="~/content/ProductDetailPage.css" rel="stylesheet" />
 
 
+<div class="detail-container">
 
-<div class="product-page">
 
-    <div class="half-container">
+    <div class="half-container" style="padding-bottom:0;" >
 
 
 
@@ -30,160 +31,191 @@
             </li>
             <li class="crumb-product-title font-grey">@Model.Product.Name</li>
 
+            @if (Model.Product.Owner.UserName.Equals(User.Identity.Name))
+            {
 
+
+                <div class="product-edit">
+
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Product.ProductId">
+
+                        <img src="~/Image/cog.png" />
+
+                        Edit Post
+
+                    </a>
+
+                </div>
+            }
         </ul>
 
 
+        <div class="product-detail-container">
+            
 
-        <section class="product">
+         
+            @if (@Model.Product.Images.Count > 1)
+            {
 
-            <div class="product-img">
-                <img src="@Url.Content(@Model.Product.Images[0].Image)" />
+            <div class="carousel">
+
+
+
+                <div class="carousel__track-container">
+
+                    <ul class="carousel__track">
+
+                     
+                            <li class="carousel__slide">
+
+                                <img  class="carousel__images" src="@Url.Content(Model.Product.Images[0].Image)" alt="" />
+
+                            </li>
+                        
+
+
+                    </ul>
+
+
+                </div>
+
+
+
+
+                <div class="carousel__nav">
+
+                    @foreach (var imgUrl in Model.Product.Images)
+                    {
+                        <button class="carousel__indicator">
+
+                            <img class="carousel_indicator_images"src="@Url.Content(imgUrl.Image)" alt="" />
+
+                        </button>
+                    }
+
+
+
+                </div>
+
+            </div>
+            <script src="~/script/ImgDetailNav.js"></script>
+            }
+            else
+            {
+                <div class="img-container">
+                    <img src="@Url.Content(@Model.Product.Images[0].Image)" />
+                    <h1></h1>
+                </div>
+            }
+        <div class="product-info">
+            <div class="offer-container">
+
+                <form method="post" id="offer-form" class="row column align-center justifiy-center">
+
+                    <img src="~/Image/close.svg" class="close-offerform" />
+
+                    <input type="hidden" name="ProductId" value="@Model.Product.ProductId" />
+
+                    <h1>Offer Price</h1>
+
+                    <input name="Price" type="number" min="1" max="2147483647" step="any" required />
+                    <h6 class="field-validation-error">Test</h6>
+
+                    <button type="submit">Send Offer</button>
+
+                </form>
+
+
+
             </div>
 
+            <h1 class="product-title">@Model.Product.Name</h1>
 
 
+            <div class="product-price">
 
 
-            <div class="product-info">
-
-
-                <div class="offer-container">
-
-                    <form method="post" id="offer-form" class="row column align-center justifiy-center">
-
-                        <img src="~/Image/close.svg" class="close-offerform" />
-
-                        <input type="hidden" name="ProductId" value="@Model.Product.ProductId" />
-
-                        <h1>Offer Price</h1>
-
-                        <input name="Price" type="number" min="1" max="2147483647" step="any" required />
-                        <h6 class="field-validation-error">Test</h6>
-
-                        <button type="submit">Send Offer</button>
-
-                    </form>
-
-
-
-                </div>
-
-
-
-                @if (Model.Product.Owner.UserName.Equals(User.Identity.Name))
+                @if (Model.Product.Sold.IsSold)
+                {<h1>SOLD</h1>}
+                else
                 {
-
-
-                    <div class="product-edit">
-
-                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Product.ProductId">
-
-                            <img src="~/Image/cog.png" />
-
-                            Edit Post
-
-                        </a>
-
-                    </div>
-                }
-
-                <div class="product-title">
-                    <h1>@Model.Product.Name</h1>
-                </div>
-
-
-
-                <div class="product-price">
-
-
-                    @if (Model.Product.Sold.IsSold)
-                    {<h1>SOLD</h1>}
+                    @if (@Model.Product.Price.ToString() == "0.00")
+                    {
+                        <h1>Free</h1>
+                    }
                     else
                     {
-                        @if (@Model.Product.Price.ToString() == "0.00")
-                        {
-                            <h1>Free</h1>
-                        }
-                        else
-                        {
-                            <h1>£@Model.Product.Price</h1>
+                        <h1>£@Model.Product.Price</h1>
 
-                        }
-                    }
-
-
-                </div>
-
-                @if (!Model.Product.Sold.IsSold)
-                {
-                    @if (!Model.Product.Owner.UserName.Equals(User.Identity.Name) && User.Identity.IsAuthenticated)
-                    {
-                        @if (!Model.HasOffer)
-                        {
-                            <a class="make-offer">Make Offer</a>
-                        }
-                        else
-                        {
-                            <a asp-controller="profile" asp-action="MyOffer" class="offer-pending">Offer Pending</a>
-                        }
-
-                        @if (!Model.HasWatchlist)
-                        {
-
-                            <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Add to watchlist</a>
-                        }
-
-                        else
-                        {
-                            <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Remove watchlist</a>
-                        }
                     }
                 }
-                <div class="seller-profile">
-
-                    <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
-                    <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
-
-                </div>
-
-
 
 
             </div>
 
+            @if (!Model.Product.Sold.IsSold)
+            {
+                @if (!Model.Product.Owner.UserName.Equals(User.Identity.Name) && User.Identity.IsAuthenticated)
+                {
+                    @if (!Model.HasOffer)
+                    {
+                        <a class="make-offer">Make Offer</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="profile" asp-action="MyOffer" class="offer-pending">Offer Pending</a>
+                    }
+
+                    @if (!Model.HasWatchlist)
+                    {
+
+                        <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Add to watchlist</a>
+                    }
+
+                    else
+                    {
+                        <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Remove watchlist</a>
+                    }
+                }
+                else
+                {
+                   <a class="login-to" asp-area="Identity" asp-page="/Account/Login">Login to make offer</a>
+                }
+            }
+
+
+        <div class="seller-profile">
+            <h6>Seller</h6>
+
+            <div class="seller-container">
+                <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
+                <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
+            </div>
+        </div>
+
+        </div>
 
 
 
-        </section>
+        </div>
+
 
 
     </div>
 
-</div>
-<div class="bottom-container">
 
-    <div class="half-container">
+    <section class="bottom-half">
 
 
+        <div class="half-container">
 
 
-
-
-        <section class="product">
 
             <div class="product-description">
                 <h4>Description</h4>
                 <h5>@Model.Product.Description</h5>
 
             </div>
-
-
-
-
-
-
-
 
 
             <section class="comments">
@@ -194,7 +226,7 @@
 
                         <img class="seller-img" src="@Url.Content(UserManager.GetUserAsync(User).Result.Avatar)" />
 
-                        <textarea type="text" class="comment-box"></textarea>
+                        <textarea type="text" class="comment-input"></textarea>
                     </div>
                     <div class="submit-section">    <a class="submit">Post comment</a></div>
                 }
@@ -202,25 +234,40 @@
                 {
                     <div class="comment-section">
 
-                        <h1>Login to post a comment</h1>
+                        <h1 class="login-comment">Login to post a comment</h1>
 
                     </div>}
 
+                @for (var i = 0; i < 5; i++)
+                {
+            <div class="comment-box">
+                <div class="comment">
+
+                    <img class="seller-img" src="/Image/user.svg" />
+
+                    <p class="comment-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ac suspendisse dignissim libero odio eu vitae nisl, mi. At arcu maecenas
+                        ac, tristique semper nulla. Libero aliquam tincidunt scelerisque in gravida.
+                        Lorem penatibus mauris dolor lorem consequat. Sed lectus congue lectus molestie a
+            
+                    </p>
+
+                </div>
+
+            </div>
+                }
+
             </section>
 
+        </div>
+    </section>
 
 
 
-
-
-
-
-        </section>
-
-
-    </div>
 
 </div>
+
 
 
 

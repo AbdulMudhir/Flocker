@@ -5,3 +5,6 @@
     cursor: unset;
     pointer-events: none;
 }
+.delete{
+    width:100%;
+}

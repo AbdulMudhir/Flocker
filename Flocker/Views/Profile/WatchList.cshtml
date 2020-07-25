@@ -7,7 +7,7 @@
 @model WatchListViewModel
 
 
-    <link href="~/content/WatchlistStylesheet.css" rel="stylesheet" />
+<link href="~/content/WatchlistStylesheet.css" rel="stylesheet" />
 
 <h1 class="profile-table-title">Watch List</h1>
 
@@ -41,19 +41,19 @@
 
                     <a class="delete row justifiy-center align-center ">Delete</a>
 
-                    <div class="confirmation-box">
 
-                        <input type="hidden" name="OfferId" value="@item.WatchListId" />
-                        <input type="hidden" name="ProductId" value="@item.Product.ProductId" />
-
-                        <h1>Are you sure you want to delete</h1>
-                        <a class="yes-button" style="cursor:pointer">Yes</a>
-                        <a class="no-button" style="cursor:pointer">No</a>
-
-
-                    </div>
                 }
+                <div class="confirmation-box">
 
+                    <input type="hidden" name="OfferId" value="@item.WatchListId" />
+                    <input type="hidden" name="ProductId" value="@item.Product.ProductId" />
+
+                    <h1>Are you sure you want to delete</h1>
+                    <a class="yes-button" style="cursor:pointer">Yes</a>
+                    <a class="no-button" style="cursor:pointer">No</a>
+
+
+                </div>  
 
             </div>
 
@@ -67,3 +67,4 @@
 
 
 </div>
+<script src="~/script/deletewatchlist.js"></script>

@@ -6,3 +6,19 @@
     cursor: unset;
     pointer-events: none;
 }
+
+.approve {
+    cursor: pointer;
+    background: #12b026;
+    width: 50%;
+    color: white;
+    height: 100%;
+}
+
+.decline {
+    background: #DD2424;
+    width: 50%;
+    color: white;
+    height: 100%;
+    cursor: pointer;
+}

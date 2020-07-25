@@ -21,15 +21,29 @@
         position: relative;
         z-index: 1;
     }
-/*    .header .container::before {
-        content: url(/Image/wave.png);
-        position: absolute;
-        z-index:-1;
-        background-size:100% 100%;
-        bottom:0;
-        left:30%;
-       
-    }*/
+.home-bottom{
+    min-height:100%;
+}
+
+@media(max-width:860px) {
+    .header .half-container {
+            display:flex;
+            flex-flow:column;
+ 
+        }
+
+        .heading-content{
+            display:flex;
+            flex-flow:column;
+            align-items:center;
+        }
+
+    .new-item {
+        grid-template-columns:repeat(2,1fr);
+    }
+   
+    }
+
 
 .half-container {
     max-width: 1440px;
@@ -40,8 +54,15 @@
     justify-self: center;
     margin-left:-210px;
 }
+
+
+@media(max-width:1200px) {
+    .heading-content{
+        margin-left:0;
+    }
+}
 .heading {
-    font-size: 96px;
+    font-size: 6rem;
     font-weight: 700;
     max-width:538px;
     color:white;
@@ -49,13 +70,33 @@
     line-height: 100px;
 }
 
+@media(max-width:860px)
+{
+    .heading {
+        font-size: 4rem;
+      
+    }
+}
+
+
+
+
 .sub-heading {
     margin-top: 1.5em;
     width: 514px;
 
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 35px;
     color: #B9B6B6;
+}
+
+@media(max-width:860px) {
+
+    .sub-heading{
+        margin-top:0;
+        text-align:center;
+        width:100%;
+    }
 }
 .sellnow {
     width: 228px;
@@ -79,14 +120,19 @@
 
         .header-img {
             grid-column: 2;
-            min-height: 200px;
-            min-width: 330px;
+        
             max-height: 230px;
             max-width: 380px;
             width: 100%;
             justify-self: start;
         }
 
+@media(max-width:860px) {
+    .header-img{
+        order:-1;
+        width:250px;
+    }
+}
 
 
 
@@ -120,7 +166,19 @@
     grid-column-gap:1.2em;
 }
 
+@media(max-width:860px) {
 
+    .spotlight-item {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:580px) {
+    .spotlight-item {
+        grid-template-columns: repeat(1,1fr);
+    }
+
+}
 
 .crown {
     position: absolute;
@@ -140,6 +198,8 @@
 
 
 .new-content {
+   padding-bottom:4em;
+   box-sizing:border-box;
 }
 
 .new-content > .container {
@@ -169,6 +229,21 @@
     
 
 }
+@media(max-width:860px) {
+   
+    .new-item {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:580px) {
+    .new-item {
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
     .new-item .card-img {
         object-fit: cover;
         max-width: 600px;
@@ -178,4 +253,3 @@
     .new-item li:nth-child(3) {
       
     }
-   

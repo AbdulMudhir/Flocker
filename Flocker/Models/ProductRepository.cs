@@ -93,5 +93,18 @@ namespace Flocker.Models
                 .OrderBy (p => p.Price).OrderBy(p => p.Price);
         }
 
+        public void SpotlightProduct(Product product)
+        {
+            if(product.Spotlight)
+            {
+                product.Spotlight = false;
+            }
+            else
+            {
+                product.Spotlight = true;
+            }
+
+            _databaseContext.SaveChanges();
+        }
     }
 }

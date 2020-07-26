@@ -36,5 +36,7 @@ namespace Flocker.Models
 
         public int DeleteProduct(Product product);
 
+        public void SpotlightProduct(Product product);
+
     }
 }

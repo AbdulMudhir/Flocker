@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Spotlight";
+    Layout = "~/Views/_ProfileLayout.cshtml";
+}
+
+
+
+    <link href="~/content/spotlightstyle.css" rel="stylesheet" />
+
+<h1 class="profile-table-title">Spotlight</h1>
+
+<div class="table  ">
+    <div class="table-title row align-center">
+        <h4 class="userColumn">Seller</h4>
+        <h4 class="priceColumn">Price</h4>
+        <h4 class="productColumn">Product Name</h4>
+        <h4 class="statusColumn" style="text-align:center">Spotlight Status</h4>
+    </div>
+
+    @foreach (var item in Model)
+    {
+
+        <div class="cell row align-center">
+            <a class="userColumn">@item.Owner.UserName</a>
+            <a class="priceColumn ">£@item.Price</a>
+            <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId" class="productColumn hoverGrey row  align-center">@item.Name </a>
+
+            <div class="statusColumn row justifiy-center align-center">
+
+                <input type="hidden" name="ProductId" value="@item.ProductId" />
+
+                @if (item.Spotlight)
+                {
+                    <input class="spotlight-checkbox" type="checkbox" checked>
+                }
+                else
+                {
+                    <input class="spotlight-checkbox" type="checkbox" >
+                }
+
+
+            </div>
+
+        </div>
+
+    }
+
+
+
+
+
+
+</div>
+
+<script src="~/script/spotlightscript.js"></script>

@@ -36,6 +36,20 @@ namespace Flocker.Controllers
             return View(products);
         }
 
+        public IActionResult Spotlight()
+        {
+            var currentUserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            if (currentUserID.Equals("bf1fc4eb-f5b9-423d-a7b7-37697e50e266"))
+            {
+                return View(_productRepository.AllProduct);
+
+            }
+
+            return NotFound();
+
+        }
         public IActionResult Offer()
         {
 

@@ -1,16 +1,18 @@
 ﻿
-const approveButton = document.querySelector(".approve");
-const declineButton = document.querySelector(".decline");
+const approveButton = document.querySelectorAll(".approve");
+const declineButton = document.querySelectorAll(".decline");
+
+for (let i = 0; i < approveButton.length; i++) {
+    approveButton[i].addEventListener("click", approveOrDecline)
+    declineButton[i].addEventListener("click", approveOrDecline)
+}
 
 
-approveButton.addEventListener("click", approveOrDecline)
-declineButton.addEventListener("click", approveOrDecline)
 
 function approveOrDecline(event) {
 
     const confirmContainer = event.target.parentElement;
 
-    console.log(event.target)
 
     const productID = confirmContainer.querySelector(`input[name="ProductId"]`).value;
     const offerID = confirmContainer.querySelector(`input[name="OfferId"]`).value;
@@ -21,13 +23,13 @@ function approveOrDecline(event) {
 
     ajax.setRequestHeader("content-type", "application/json");
     ajax.responseType = "json";
-
     ajax.onload = function () {
 
         if (this.status === 200) {
 
             if (this.response.success === "true") {
-                //event.target.parentElement.parentElement.parentElement.remove()
+
+                event.target.parentElement.parentElement.remove()
             }
 
             else {

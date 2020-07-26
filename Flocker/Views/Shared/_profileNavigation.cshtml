@@ -5,10 +5,16 @@
         <ul class="categories row justifiy-center align-center ">
 
 
+            @if (UserManager.GetUserAsync(User).Result.Id.Equals("bf1fc4eb-f5b9-423d-a7b7-37697e50e266"))
+            {
+                <li class="row justifiy-center align-center s"><a asp-controller="profile" asp-action="Spotlight">Spotlight</a></li>
+
+            }
+
             <li class="row justifiy-center align-center wl"><a asp-controller="profile" asp-action="WatchList">Watchlist</a></li>
             <li class="row justifiy-center align-center mp"><a asp-controller="profile" asp-action="index">MyProduct</a></li>
             <li class="row justifiy-center align-center mo"><a asp-controller="profile" asp-action="MyOffer">MyOffers</a></li>
-            <li class="row justifiy-center align-center o" ><a asp-controller="profile" asp-action="Offer"> Offers</a></li>
+            <li class="row justifiy-center align-center o"><a asp-controller="profile" asp-action="Offer"> Offers</a></li>
 
 
 

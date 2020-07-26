@@ -546,7 +546,26 @@ namespace Flocker.Controllers
 
             return Json( new { success="false" });
         }
+        [HttpPost]
+        public IActionResult SpotlightProduct([FromBody] int productId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            var product = _productRepository.GetProductById(productId);
+            
+            if(userId.Equals("bf1fc4eb-f5b9-423d-a7b7-37697e50e266"))
+            {
+                if(product != null)
+                {
+                    _productRepository.SpotlightProduct(product);
+
+                    return Json(new { success = "true" });
+                }
+
+            }
+
+            return Json(new { success = "false" });
+        }
 
     }
 }

@@ -436,3 +436,4 @@ C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Profile\MyOffer.cshtml.g.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Offer.cshtml.g.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Profile\WatchList.cshtml.g.cs
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Spotlight.cshtml.g.cs

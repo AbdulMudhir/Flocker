@@ -242,6 +242,13 @@
     .new-item {
         grid-template-columns: repeat(1,1fr);
     }
+    .spotlight > .container {
+        padding: 5.5rem 1em;
+        padding-bottom: 0;
+    }
+    .new-content > .container {
+        padding: 4em 1em;
+    }
 }
 
     .new-item .card-img {
@@ -253,3 +260,4 @@
     .new-item li:nth-child(3) {
       
     }
+    

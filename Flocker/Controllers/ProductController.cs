@@ -24,10 +24,12 @@ namespace Flocker.Controllers
 
         private IOfferRepository _offerRepository;
 
+        private ICommentRepository _commentRepository;
+
         private IWatchListRepository _watchListRepository;
 
         public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IWebHostEnvironment environment, IOfferRepository offerRepository,
-            IWatchListRepository watchListRepository
+            IWatchListRepository watchListRepository, ICommentRepository commentRepository
             )
         {
             _productRepository = productRepository;
@@ -36,6 +38,8 @@ namespace Flocker.Controllers
 
             _offerRepository = offerRepository;
             _watchListRepository = watchListRepository;
+
+            _commentRepository = commentRepository;
 
             _hostingEnvironment = environment;
         }
@@ -155,7 +159,7 @@ namespace Flocker.Controllers
                         Price = productForm.Price,
                         Description = productForm.Description,
                         CategoryId = int.Parse(productForm.Category),
-                        DatePosted = DateTime.Now.Date,
+                        DatePosted = DateTime.Now,
                         OwnerId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                         Sold = new Sold { },
                        
@@ -477,7 +481,7 @@ namespace Flocker.Controllers
             {
 
                         offer.UserId = userId;
-                        offer.DatePosted = DateTime.Now.Date;
+                        offer.DatePosted = DateTime.Now;
                         offer.isPending = true;
 
                         _offerRepository.AddOffer(offer);
@@ -489,7 +493,7 @@ namespace Flocker.Controllers
             else if(!checkOfferAlreadyExist.isApproved && !checkOfferAlreadyExist.isPending )
             {
                         offer.UserId = userId;
-                            offer.DatePosted = DateTime.Now.Date;
+                            offer.DatePosted = DateTime.Now;
                             offer.isPending = true;
                             _offerRepository.AddOffer(offer);
                         return Json(new { success = "true", message = "Offer has been sent" });
@@ -510,6 +514,37 @@ namespace Flocker.Controllers
 
             return NotFound();
 
+        }
+
+        [HttpPost]
+        public IActionResult PostComment([FromBody] CommentPostModel comment)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (comment != null)
+            {
+                if (comment.Content.Length > 5 && comment.ProductId > 0)
+                {
+                    Comment comment1 = new Comment()
+                    { ProductId = comment.ProductId,
+                        Content = comment.Content,
+                        UserId = userId,
+
+
+
+
+                    };
+
+                    _commentRepository.PostComment(comment1);
+
+
+                    return Json(new { success = "true", date = DateTime.Now.ToString() });
+
+                }
+
+            }
+
+            return Json( new { success="false" });
         }
 
 

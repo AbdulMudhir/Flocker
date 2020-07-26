@@ -179,11 +179,14 @@
 
     .product-info {
         width: 100%;
+        margin-top:4em;
     }
-
+    .product-title{
+        font-size:4rem;
+    }
+   
     .carousel__track-container {
         width: 100%;
-
         max-width: unset;
     }
 
@@ -259,6 +262,19 @@
         color:#948d8d
     }
 
+    @media(max-width:1080px)
+    {
+        .product-description{
+            width:100%;
+        }
+        .product-description h4{
+            font-size:1.8rem;
+        }
+        .product-description h5{
+            font-size:1.5rem;
+        }
+    }
+
 .comments {
     width:50%;
     margin-top:1.5em;
@@ -291,23 +307,30 @@
 
 .comment {
     
-    display: flex;
     border-bottom: 1px solid #C1C1C1;
     box-sizing: border-box;
-    padding-bottom:1em;
+    padding-bottom:2.5em;
     margin-bottom:2.5em;
 }
-.user-comment{
-    margin-bottom:.5em;
+
+.comment-date{
+    width:50%;
+    display:flex;
+    align-items:center;
+     justify-content:flex-end;
 }
 
-.comment-text{
-    font-size:12px;
+.comment-text {
+    font-size: 16px;
+}
+.comment-profile{
+    display:flex;
+    margin-bottom:1em;
 }
 
-.login-comment{
-    margin-bottom:2em;
-    font-size:1rem !important;
+.login-comment {
+    margin-bottom: 2em;
+    font-size: 1rem !important;
 }
 
 .login-to {
@@ -324,4 +347,41 @@
     justify-content: center;
     align-items: center;
     text-decoration:none;
+}
+
+.field-validation-error{
+    display:none;
+}
+
+.user-comment {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    font-size: 1rem !important;
+}
+
+.submit-comment {
+    cursor:pointer;
+    color: white;
+    border-radius: 5px;
+    background: rgb(12,165,28);
+    padding: .5em 1em;
+}
+
+@media(max-width:1080px) {
+    .comments {
+        width: 100%;
+  
+    }
+    
+}
+
+@media(max-width:680px)
+{
+    .detail-container .half-container {
+        padding: 4em 1em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
 }

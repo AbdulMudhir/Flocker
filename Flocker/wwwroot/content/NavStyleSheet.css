@@ -101,10 +101,11 @@ nav {
     text-overflow:ellipsis;
 }
 
-.LoginNavigation{
-    display:flex;
-    align-items:center;
-    justify-content:space-evenly;
+.LoginNavigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 1em;
 }
 .login, .register, .logout {
     max-height: 36px;

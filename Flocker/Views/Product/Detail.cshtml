@@ -176,22 +176,27 @@
                     {
                         <a name="ProductId" value="@Model.Product.ProductId" class="add-watchlist" style="cursor:pointer"><img src="~/Image/heart.png" />Remove watchlist</a>
                     }
+
+
+
+                    <script src="~/script/ProductDetailScripts.js"></script>
+                    <script src="~/script/watchlistscript.js"></script>
                 }
-                else
+                else if (!User.Identity.IsAuthenticated)
                 {
-                   <a class="login-to" asp-area="Identity" asp-page="/Account/Login">Login to make offer</a>
+                    <a class="login-to" asp-area="Identity" asp-page="/Account/Login">Login to make offer</a>
                 }
             }
 
 
-        <div class="seller-profile">
-            <h6>Seller</h6>
+            <div class="seller-profile">
+                <h6>Seller</h6>
 
-            <div class="seller-container">
-                <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
-                <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
+                <div class="seller-container">
+                    <img class="seller-img" src="@Url.Content(@Model.Product.Owner.Avatar)" />
+                    <h5 class="seller-name">@Model.Product.Owner.UserName</h5>
+                </div>
             </div>
-        </div>
 
         </div>
 
@@ -224,11 +229,17 @@
                 {
                     <div class="comment-section">
 
+                        <input type="hidden" name="ProductId" value="@Model.Product.ProductId" />
+                        <input type="hidden" name="UserLoggedIn" value="@User.Identity.Name" />
+
+
                         <img class="seller-img" src="@Url.Content(UserManager.GetUserAsync(User).Result.Avatar)" />
 
-                        <textarea type="text" class="comment-input"></textarea>
+                        <textarea required maxlength="500" minlength="5" type="text" class="comment-input"></textarea>
                     </div>
-                    <div class="submit-section">    <a class="submit">Post comment</a></div>
+                    <span class="field-validation-error"></span>
+                    <div class="submit-section">    <a class="submit-comment">Post comment</a></div>
+                    <script src="~/script/PostCommentScript.js"></script>
                 }
                 else
                 {
@@ -238,25 +249,34 @@
 
                     </div>}
 
-                @for (var i = 0; i < 5; i++)
+
+            <div class="comment-box-container">
+
+                @foreach (var comment in Model.Product.Comments.Reverse())
                 {
-            <div class="comment-box">
-                <div class="comment">
+                    <div class="comment-box">
+                        <div class="comment">
 
-                    <img class="seller-img" src="/Image/user.svg" />
+                            <div class="comment-profile">
+                                <img class="seller-img" src="@Url.Content(comment.User.Avatar)" />
+                                <h1 class="user-comment">@comment.User.UserName</h1>
+                                <div class="comment-date">
+                                    @comment.DatePosted
+                                </div>
+                            </div>
+                            <p class="comment-text">
+                                @comment.Content
 
-                    <p class="comment-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ac suspendisse dignissim libero odio eu vitae nisl, mi. At arcu maecenas
-                        ac, tristique semper nulla. Libero aliquam tincidunt scelerisque in gravida.
-                        Lorem penatibus mauris dolor lorem consequat. Sed lectus congue lectus molestie a
-            
-                    </p>
+                            </p>
 
-                </div>
+                        </div>
+
+
+
+                    </div>
+                }
 
             </div>
-                }
 
             </section>
 
@@ -269,7 +289,3 @@
 </div>
 
 
-
-
-<script src="~/script/ProductDetailScripts.js"></script>
-<script src="~/script/watchlistscript.js"></script>

@@ -48,3 +48,11 @@
             background:#808080;
             color:white;
         }
+
+        @media(max-width:480px)
+        {
+            .category-item {
+                padding: 4em 1em;
+      
+            }
+        }

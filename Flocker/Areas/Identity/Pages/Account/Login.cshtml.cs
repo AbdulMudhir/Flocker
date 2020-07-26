@@ -104,5 +104,24 @@ namespace Flocker.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
+        public async Task<IActionResult> OnGetDummyAccount(string accountType)
+        {
+           
+            var username = accountType;
+            var password = System.Environment.GetEnvironmentVariable("dummyPassword");
+
+
+ 
+
+            var result = await _signInManager.PasswordSignInAsync(username, password, false, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User logged in.");
+                return LocalRedirect("~/");
+            }
+            // If we got this far, something failed, redisplay form
+            return Page();
+        }
     }
 }

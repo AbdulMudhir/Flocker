@@ -35,6 +35,7 @@ namespace Flocker
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IOfferRepository, OfferRepository>();
             services.AddScoped<IWatchListRepository, WatchListRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllersWithViews().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);

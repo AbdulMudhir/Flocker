@@ -8,39 +8,54 @@
  
     <link href="~/content/loginstylesheet.css" rel="stylesheet" />
 
-        <div class="half-container">
+    <div class="half-container login-container">
 
-            <form id="login-form" class="form-template" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
 
-                <div class="form-group">
-                    <label asp-for="Input.Username"></label>
-                    <input asp-for="Input.Username"  />
-                    <span asp-validation-for="Input.Username" ></span>
+        <form id="login-form" class="form-template" method="post">
+        
+            <div asp-validation-summary="All" class="text-danger"></div>
 
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password"/>
-                    <span asp-validation-for="Input.Password" ></span>
+            <div class="form-group">
 
-             
+                <label asp-for="Input.Username"></label>
+                <input asp-for="Input.Username" />
+                <span asp-validation-for="Input.Username"></span>
 
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" />
+                <span asp-validation-for="Input.Password"></span>
 
-                </div>
-           
-              
-            
-                <div class="form-group forget-password">
-               
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-          
-                </div>
-            </form>
+
+
+                <button type="submit" class="login-big">Log in</button>
+
+            </div>
+
+
+
+                <p>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="color:white; text-decoration:none">Register as a <span style="color:#17B0BA">new user</span></a>
+                </p>
+
+        </form>
+
+
+        <div class="dummy-account-container">
+
+            <a  asp-page-handler="DummyAccount" asp-route-accountType="dummyaccount1" class="dummy-button">Login as dummy account 1</a>
+            <a  asp-page-handler="DummyAccount" asp-route-accountType="dummyaccount2" class="dummy-button">Login as dummy account 2</a>
+            <a  asp-page-handler="DummyAccount" asp-route-accountType="dummyAdmin" class="dummy-button">Login as dummy Admin</a>
+
+
         </div>
+
+
+
+
+
+
+
+    </div>
 
 
 

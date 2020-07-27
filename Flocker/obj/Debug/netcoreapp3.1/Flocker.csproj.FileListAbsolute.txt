@@ -418,9 +418,6 @@ C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Microsoft.As
 C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
-C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.csproj.CoreCompileInputs.cache
-C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
@@ -437,3 +434,10 @@ C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Offer.cshtml.g.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Profile\WatchList.cshtml.g.cs
 C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Spotlight.cshtml.g.cs
+C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Microsoft.WindowsAzure.Storage.dll
+C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Azure.Core.dll
+C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Azure.Storage.Blobs.dll
+C:\Users\Abdul\source\repos\Flocker\Flocker\bin\Debug\netcoreapp3.1\Azure.Storage.Common.dll
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.csproj.CoreCompileInputs.cache
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Abdul\source\repos\Flocker\Flocker\obj\Debug\netcoreapp3.1\Flocker.MvcApplicationPartsAssemblyInfo.cache

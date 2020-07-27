@@ -1,0 +1,65 @@
+﻿body {
+}
+
+
+.login-container{
+    min-height:100%;
+    padding-bottom:5em;
+}
+
+.form-template {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 3em 3em;
+    border-radius: 5px;
+    margin-top: 4em;
+    background: #143c79;
+    color: white;
+}
+
+.form-group{
+    background:transparent;
+    padding:0;
+}
+
+.form-group label {
+    margin-top: 1em;
+    margin-bottom:.2em;
+}
+
+.login-big {
+    width: 100%;
+    margin-top: 1em;
+    height: 40px;
+    color: white;
+    border: none;
+    background: #1AD137;
+}
+
+.dummy-account-container {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 0em 3em;
+    border-radius: 5px;
+    margin-top: 4em;
+    background: #143c79;
+
+    display: flex;
+    flex-flow: column;
+    color: white;
+}
+
+
+
+.dummy-button{
+    box-sizing:border-box;
+    margin-top: 1em;
+    padding: 1em;
+    text-align:center;
+    background:#2376f5;
+    color:white;
+    text-decoration:none;
+}
+.dummy-button:last-child{
+    margin-bottom:1em;
+}

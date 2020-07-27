@@ -1,0 +1,100 @@
+﻿
+
+.profile-table-title{
+    color:white;
+    font-size:2rem;
+    font-weight:700;
+}
+
+.table{
+    color:white;
+    margin-top:2em;
+}
+
+.table-title{
+    border-bottom:1px solid white;
+    padding-bottom:.6em;
+}
+.table-title h4:first-child {
+    width:20%;
+}
+    .table-title h4:last-child{
+        width:60%;
+    }
+  
+
+    .table-title h4 {
+    }
+
+    .cell{
+        margin-top:.6em;
+        color:black;
+        background:white;
+        height:42px;
+    }
+
+.category {
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid #A39E9E;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+}
+.product-name {
+    height: 100%;
+    width: 60%;
+    padding-left:1em;
+    white-space:nowrap;
+    overflow-x:hidden;
+    text-overflow:ellipsis;
+    text-decoration:none;
+    box-sizing:border-box;
+}
+    .product-name:hover, .category:hover {
+        background: #e4e1e1
+    }
+.options {
+    width: 20%;
+    height: 100%;
+    position: relative;
+}
+.delete, .edit{
+    width:55%;
+    height:42px;
+
+}
+.delete {
+    cursor:pointer;
+    background: #C51414;
+    color:white;
+    padding:.8em;
+    box-sizing:border-box;
+    border-radius:0;
+}
+.edit {
+    cursor: pointer;
+    background: #14C525;
+    color: white;
+    padding: .8em;
+    box-sizing: border-box;
+    margin-right:-.1em;
+}
+.sold {
+    background: #14C525;
+    color: white;
+    width:100%;
+    box-sizing:border-box;
+}
+
+
+.mp {
+    background: #bbbaba;
+    color: white;
+    pointer-events: none;
+}
+
+.yes-button{
+    cursor:pointer;
+}

@@ -35,7 +35,7 @@ namespace Flocker.Controllers
         }
 
         [HttpPost]
-        public JsonResult SortBy([FromBody] int CategoryId)
+        public IActionResult SortBy([FromBody] int CategoryId)
         {
 
             if(CategoryId != 0)

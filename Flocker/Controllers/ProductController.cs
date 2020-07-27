@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Flocker.BlobStorageService;
 using Flocker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Azure;
 
 namespace Flocker.Controllers
 {
@@ -28,8 +31,11 @@ namespace Flocker.Controllers
 
         private IWatchListRepository _watchListRepository;
 
+        private IBlobService _blobService;
+
+
         public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IWebHostEnvironment environment, IOfferRepository offerRepository,
-            IWatchListRepository watchListRepository, ICommentRepository commentRepository
+            IWatchListRepository watchListRepository, ICommentRepository commentRepository, IBlobService blobService
             )
         {
             _productRepository = productRepository;
@@ -40,6 +46,8 @@ namespace Flocker.Controllers
             _watchListRepository = watchListRepository;
 
             _commentRepository = commentRepository;
+
+            _blobService = blobService;
 
             _hostingEnvironment = environment;
         }
@@ -139,11 +147,14 @@ namespace Flocker.Controllers
             return View(productForm);
         }
 
+
+    
+
         [Authorize]
         // made using ajax posting
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add(ProductFormModel productForm)
+        public async Task<IActionResult> Add(ProductFormModel productForm)
         {
 
             // no validation for now
@@ -182,15 +193,11 @@ namespace Flocker.Controllers
                             var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
                             var filePath = Path.Combine(uploadPath, uniqueFileName);
 
+                           var imgUrl = await  _blobService.UploadFileBlobAsync(image, uniqueFileName);
 
-                            using (var stream = System.IO.File.Create(filePath))
-                            {
-                                image.CopyTo(stream);
-
-                            }
 
                             // add all the iamge url to  the product object
-                            productToAdd.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+                            productToAdd.Images.Add(new ProductImage { Image = imgUrl });
                         }
 
                     }
@@ -319,7 +326,7 @@ namespace Flocker.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(ProductFormEditModel productForm)
+        public async Task<IActionResult> Edit(ProductFormEditModel productForm)
         {
 
 
@@ -353,15 +360,12 @@ namespace Flocker.Controllers
                             var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
                             var filePath = Path.Combine(uploadPath, uniqueFileName);
 
+                            var imgUrl = await _blobService.UploadFileBlobAsync(image, uniqueFileName);
 
-                            using (var stream = System.IO.File.Create(filePath))
-                            {
-                                image.CopyTo(stream);
 
-                            }
-
+                        
                             // add all the iamge url to  the product object
-                            productForm.Images.Add(new ProductImage { Image = "~/ProductImages/" + uniqueFileName });
+                            productForm.Images.Add(new ProductImage { Image = imgUrl });
                         }
 
                     }
@@ -516,6 +520,7 @@ namespace Flocker.Controllers
 
         }
 
+
         [HttpPost]
         public IActionResult PostComment([FromBody] CommentPostModel comment)
         {
@@ -563,6 +568,31 @@ namespace Flocker.Controllers
                 }
 
             }
+
+            return Json(new { success = "false" });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> SearchResult([FromBody]SearchModel search)
+        {
+
+            if(ModelState.IsValid)
+            {
+
+
+            var products =  _productRepository.SearchProductByName(search.ProductName);
+
+          
+                if (products != null)
+                {
+                    
+
+                    return Json(new { success = "true", data = products });
+                }
+
+            }
+
 
             return Json(new { success = "false" });
         }

@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Flocker.BlobStorageService;
 
 namespace Flocker.Areas.Identity.Pages.Account
 {
@@ -28,18 +29,21 @@ namespace Flocker.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private IWebHostEnvironment _hostingEnvironment;
+        private IBlobService _blobService;
         public RegisterModel(
             UserManager<CustomUserIdentity> userManager,
             SignInManager<CustomUserIdentity> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IWebHostEnvironment environment)
+            IWebHostEnvironment environment,
+            IBlobService blobService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _hostingEnvironment = environment; 
+            _hostingEnvironment = environment;
+            _blobService = blobService;
         }
 
         [BindProperty]
@@ -110,14 +114,11 @@ namespace Flocker.Areas.Identity.Pages.Account
                         var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "ProductImages");
                         var filePath = Path.Combine(uploadPath, uniqueFileName);
 
+                        var imgUrl = await _blobService.UploadFileBlobAsync(avatarFile, uniqueFileName);
 
-                        using (var stream = System.IO.File.Create(filePath))
-                        {
-                            avatarFile.CopyTo(stream);
+            
 
-                        }
-
-                    avatarUrl = $"~/ProductImages/{uniqueFileName}";
+                    avatarUrl = imgUrl;
 
 
                 }

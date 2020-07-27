@@ -1,0 +1,21 @@
+﻿
+.profile-container {
+    width: 100%;
+    background: #1B4079;
+    overflow-y: hidden;
+    min-height:100%;
+}
+
+    .profile-container .half-container {
+        width: 95%;
+        max-width: 960px;
+        padding: 4em 6em;
+    }
+
+    @media(max-width:1080px)
+    {
+        .profile-container .half-container {
+      
+            padding: 4em 0;
+        }
+    }

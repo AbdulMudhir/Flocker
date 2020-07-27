@@ -109,7 +109,7 @@ namespace Flocker.Areas.Identity.Pages.Account
         {
            
             var username = accountType;
-            var password = System.Environment.GetEnvironmentVariable("dummyPassword");
+            var password = "";
 
 
  

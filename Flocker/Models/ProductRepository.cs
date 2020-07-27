@@ -106,5 +106,10 @@ namespace Flocker.Models
 
             _databaseContext.SaveChanges();
         }
+
+        public IEnumerable<Product> SearchProductByName(string name)
+        {
+            return _databaseContext.Products.Where(p => p.Name.Contains(name) && !p.Sold.IsSold).Include(p => p.Category);
+        }
     }
 }

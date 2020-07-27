@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
+using Flocker.BlobStorageService;
 using Flocker.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +43,8 @@ namespace Flocker
             services.AddControllersWithViews().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
             services.AddDefaultIdentity<CustomUserIdentity>().AddEntityFrameworkStores<DatabaseContext>();
             services.AddRazorPages();
+            services.AddSingleton(x => new BlobServiceClient(Configuration.GetConnectionString("AccessKey")));
+            services.AddSingleton<IBlobService, BlobService>();
 
             services.Configure<IdentityOptions>(options =>
             {
